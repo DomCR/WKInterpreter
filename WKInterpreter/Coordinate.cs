@@ -7,69 +7,95 @@ using WKInterpreter.Enums;
 
 namespace WKInterpreter
 {
-    public class Coordinate
+    /// <summary>
+    /// Represents a coordinate in the space.
+    /// </summary>
+    public class Coordinate : IWKSerializable
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Altitude { get; set; }
         public CoordinateType Type { get; private set; }
 
+        /// <summary>
+        /// Set an empty coordinate to the 0, 0, 0 point
+        /// </summary>
         public Coordinate()
         {
-            X = 0.0d;
-            Y = 0.0d;
-            Z = 0.0d;
+            Latitude = 0.0d;
+            Longitude = 0.0d;
+            Altitude = 0.0d;
         }
-        public Coordinate(double p1, double p2, double p3)
+        public Coordinate(double x, double y, double z)
         {
-            X = p1;
-            Y = p2;
-            Z = p3;
+            Longitude = x;
+            Latitude = y;
+            Altitude = z;
         }
-        public Coordinate(double p1, double p2)
+        public Coordinate(double x, double y)
         {
-            X = p1;
-            Y = p2;
-            Z = 0.0d;
+            Longitude = x;
+            Latitude = y;
+            Altitude = 0.0d;
         }
         //*********************************************************
         public bool IsNear(Coordinate other, double minDist = 0, bool ignoreZ = true)
         {
-            double Vect_X = this.X - other.X;
-            double Vect_Y = this.Y - other.Y;
-            double Vect_Z = 0;
+            double x = this.Longitude - other.Longitude;
+            double y = this.Latitude - other.Latitude;
+            double z = 0;
 
             if (!ignoreZ)
-                Vect_Z = this.Z - other.Z;
+                z = this.Altitude - other.Altitude;
 
-            double dist = Math.Sqrt(Vect_X * Vect_X + Vect_Y * Vect_Y + Vect_Z * Vect_Z);
+            double dist = Math.Sqrt(y * y + x * x + z * z);
             return dist <= minDist;
         }
         //*********************************************************
+        /// <summary>
+        /// Addition between coordinates, lat + lat0 | lon + lon0 | alt + alt0.
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <returns></returns>
         public static Coordinate operator +(Coordinate c1, Coordinate c2)
         {
             Coordinate tmpCoord = new Coordinate();
 
-            tmpCoord.X = c1.X + c2.X;
-            tmpCoord.Y = c1.Y + c2.Y;
-            tmpCoord.Z = c1.Z + c2.Z;
+            tmpCoord.Latitude = c1.Latitude + c2.Latitude;
+            tmpCoord.Longitude = c1.Longitude + c2.Longitude;
+            tmpCoord.Altitude = c1.Altitude + c2.Altitude;
 
             return tmpCoord;
         }
+        /// <summary>
+        /// Subsctraction between coordinates, lat - lat0 | lon - lon0 | alt - alt0.
+        /// </summary>
+        /// <param name="c1"></param>
+        /// <param name="c2"></param>
+        /// <returns></returns>
         public static Coordinate operator -(Coordinate c1, Coordinate c2)
         {
             Coordinate tmpCoord = new Coordinate();
 
-            tmpCoord.X = c1.X - c2.X;
-            tmpCoord.Y = c1.Y - c2.Y;
-            tmpCoord.Z = c1.Z - c2.Z;
+            tmpCoord.Latitude = c1.Latitude - c2.Latitude;
+            tmpCoord.Longitude = c1.Longitude - c2.Longitude;
+            tmpCoord.Altitude = c1.Altitude - c2.Altitude;
 
             return tmpCoord;
         }
         //*********************************************************
         public override string ToString()
         {
-            return "(" + X + ", " + Y + ", " + Z + ")";
+            return "(" + Longitude + ", " + Latitude + ", " + Altitude + ")";
+        }
+        public string ToWKT()
+        {
+            return "(" + Longitude + ", " + Latitude + ")";
+        }
+        public byte[] ToWKB()
+        {
+            throw new NotImplementedException();
         }
     }
 }

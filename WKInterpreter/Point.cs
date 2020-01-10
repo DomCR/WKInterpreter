@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WKInterpreter.Geometries
+namespace WKInterpreter
 {
-    public class Point : Geometry
+    public class Point : Geometry, IWKSerializable
     {
         /// <summary>
         /// Coordinate point to store the variables
@@ -15,15 +15,15 @@ namespace WKInterpreter.Geometries
         /// <summary>
         /// Equivalent to the Longitude in geospatial coords
         /// </summary>
-        public double X { get { return Coord.X; } }
+        public double X { get { return Coord.Longitude; } }
         /// <summary>
         /// Equivalent to the Latitude in geospatial coords
         /// </summary>
-        public double Y { get { return Coord.Y; } }
+        public double Y { get { return Coord.Latitude; } }
         /// <summary>
         /// Equivalent to the Altitude in geospatial coords
         /// </summary>
-        public double Z { get { return Coord.Z; } }
+        public double Z { get { return Coord.Altitude; } }
 
         /// <summary>
         /// Default constructor using only the blop
@@ -34,9 +34,9 @@ namespace WKInterpreter.Geometries
             int pos = 5;
             Coordinate tmp = new Coordinate();
 
-            tmp.X = BitConverter.ToDouble(p_extractBytes(Blop, pos, 8), 0);
-            tmp.Y = BitConverter.ToDouble(p_extractBytes(Blop, pos + 8, 8), 0);
-            tmp.Z = 0.0d; //3D not implemented
+            tmp.Longitude = BitConverter.ToDouble(extractBytes(m_blop, pos, 8), 0);
+            tmp.Latitude = BitConverter.ToDouble(extractBytes(m_blop, pos + 8, 8), 0);
+            tmp.Altitude = 0.0d; //3D not implemented
 
             Coord = tmp;
         }
@@ -48,12 +48,21 @@ namespace WKInterpreter.Geometries
         /// <param name="setLevel"></param>
         public Point(byte[] blop, double setLevel) : this(blop)
         {
-            Coord.Z = setLevel;
+            Coord.Altitude = setLevel;
+        }
+        //*********************************************************
+        public string ToWKT()
+        {
+            return "POINT" + Coord.ToString();
+        }
+        public byte[] ToWKB()
+        {
+            throw new NotImplementedException();
         }
         //*********************************************************
         public override string ToString()
         {
-            return "POINT " + Coord.ToString();
+            return Coord.ToString();
         }
     }
 }

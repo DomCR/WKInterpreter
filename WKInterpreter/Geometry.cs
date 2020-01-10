@@ -5,19 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using WKInterpreter.Emuns;
 
-namespace WKInterpreter.Geometries
+namespace WKInterpreter
 {
+    /// <summary>
+    /// Represents a geometric object
+    /// </summary>
     public abstract class Geometry
     {
-        public EndianEncode Endian     { get; set; }
-        public GeometryType Category { get; set; }
-        public byte[] Blop       { get; protected set; }
+        public EndianEncode Endian { get; set; }
+        public GeometryType GeometryType { get; set; }
+        protected byte[] m_blop;
 
         public Geometry(byte[] blop)
         {
-            this.Blop = blop;
-            this.Endian = (EndianEncode)p_extractBytes(Blop, 0, 1).First();
-            this.Category = (GeometryType)BitConverter.ToInt32(p_extractBytes(Blop, 1, 4), 0);
+            this.m_blop = blop;
+            this.Endian = (EndianEncode)extractBytes(m_blop, 0, 1).First();
+            this.GeometryType = (GeometryType)BitConverter.ToInt32(extractBytes(m_blop, 1, 4), 0);
         }
         //*********************************************************
         /// <summary>
@@ -27,8 +30,8 @@ namespace WKInterpreter.Geometries
         /// <returns></returns>
         public static Geometry Deserialize(byte[] blop)
         {
-            EndianEncode codeTy = (EndianEncode)blop[0];
-            GeometryType type = (GeometryType)BitConverter.ToInt32(p_extractBytes(blop, 1, 4), 0);
+            //EndianEncode codeType = (EndianEncode)blop[0];
+            GeometryType type = (GeometryType)BitConverter.ToInt32(extractBytes(blop, 1, 4), 0);
 
             switch (type)
             {
@@ -86,7 +89,7 @@ namespace WKInterpreter.Geometries
         /// <param name="length"></param>
         /// <param name="reverse"></param>
         /// <returns></returns>
-        protected static byte[] p_extractBytes(byte[] buffer, int start, int length, bool reverse = false)
+        protected static byte[] extractBytes(byte[] buffer, int start, int length, bool reverse = false)
         {
             byte[] result = new byte[length];
             Array.Copy(buffer, start, result, 0, length);
