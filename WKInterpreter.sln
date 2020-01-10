@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WKInterpreter", "WKInterpreter\WKInterpreter.csproj", "{2E71138C-C258-4BAC-A325-2D36F131887A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E71138C-C258-4BAC-A325-2D36F131887A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E71138C-C258-4BAC-A325-2D36F131887A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E71138C-C258-4BAC-A325-2D36F131887A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E71138C-C258-4BAC-A325-2D36F131887A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF42CD85-A7A2-4E52-9FB2-BAD469CFB7A4}
+	EndGlobalSection
+EndGlobal
