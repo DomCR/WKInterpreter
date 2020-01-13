@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WKInterpreter.Emuns;
+using WKInterpreter.Exceptions;
 
 namespace WKInterpreter
 {
@@ -14,13 +15,15 @@ namespace WKInterpreter
     {
         public EndianEncode Endian { get; set; }
         public GeometryType GeometryType { get; set; }
-        protected byte[] m_blop;
 
         public Geometry(byte[] blop)
         {
-            this.m_blop = blop;
-            this.Endian = (EndianEncode)extractBytes(m_blop, 0, 1).First();
-            this.GeometryType = (GeometryType)BitConverter.ToInt32(extractBytes(m_blop, 1, 4), 0);
+            this.Endian = (EndianEncode)extractBytes(blop, 0, 1).First();
+            this.GeometryType = (GeometryType)BitConverter.ToInt32(extractBytes(blop, 1, 4), 0);
+        }
+        public Geometry(string str)
+        {
+            Endian = EndianEncode.BIG_ENDIAN;
         }
         //*********************************************************
         /// <summary>
@@ -79,6 +82,87 @@ namespace WKInterpreter
             }
 
             return null;
+        }
+        /// <summary>
+        /// Return a geometry object from a WKT string
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static Geometry Deserialize(string str)
+        {
+            string name = str.Split('(')[0];
+
+            GeometryType type = GeometryType.NULL;
+            try
+            {
+                type = (GeometryType)Enum.Parse(typeof(GeometryType), name);
+            }
+            catch (Exception ex)
+            {
+                throw new WrongStringFormatException("Wrong string format, geometry name not found.", ex);
+            }
+
+            switch (type)
+            {
+                case GeometryType.NULL:
+                    return null;
+                case GeometryType.POINT:
+                    return new Point(str);
+                case GeometryType.LINESTRING:
+                    break;
+                case GeometryType.POLYGON:
+                    break;
+                case GeometryType.MULTIPOINT:
+                    break;
+                case GeometryType.MULTILINESTRING:
+                    break;
+                case GeometryType.MULTIPOLYGON:
+                    break;
+                case GeometryType.GEOMETRYCOLLECTION:
+                    break;
+                case GeometryType.CIRCULARSTRING:
+                    break;
+                case GeometryType.COMPOUNDCURVE:
+                    break;
+                case GeometryType.CURVEPOLYGON:
+                    break;
+                case GeometryType.MULTICURVE:
+                    break;
+                case GeometryType.MULTISURFACE:
+                    break;
+                case GeometryType.CURVE:
+                    break;
+                case GeometryType.SURFACE:
+                    break;
+                case GeometryType.POLYHEDRALSURFACE:
+                    break;
+                case GeometryType.TIN:
+                    break;
+                case GeometryType.TRIANGLE:
+                    break;
+                case GeometryType.CIRCLE:
+                    break;
+                case GeometryType.GEODESICSTRING:
+                    break;
+                case GeometryType.ELLIPTICALCURVE:
+                    break;
+                case GeometryType.URBSCURVE:
+                    break;
+                case GeometryType.CLOTHOID:
+                    break;
+                case GeometryType.SPIRALCURVE:
+                    break;
+                case GeometryType.COMPOUNDSURFACE:
+                    break;
+                case GeometryType.BREPSOLID:
+                    break;
+                case GeometryType.AFFINEPLACEMENT:
+                    break;
+                default:
+                    break;
+            }
+
+            throw new NotImplementedException();
         }
         //*********************************************************
         /// <summary>

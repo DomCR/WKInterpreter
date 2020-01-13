@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace WKInterpreter
 {
+    /// <summary>
+    /// Represents a spatial point.
+    /// </summary>
     public class Point : Geometry, IWKSerializable
     {
         /// <summary>
@@ -15,18 +18,17 @@ namespace WKInterpreter
         /// <summary>
         /// Equivalent to the Longitude in geospatial coords
         /// </summary>
-        public double X { get { return Coord.Longitude; } }
+        public double X { set { Coord.Longitude = value; } get { return Coord.Longitude; } }
         /// <summary>
         /// Equivalent to the Latitude in geospatial coords
         /// </summary>
-        public double Y { get { return Coord.Latitude; } }
+        public double Y { set { Coord.Latitude = value; } get { return Coord.Latitude; } }
         /// <summary>
         /// Equivalent to the Altitude in geospatial coords
         /// </summary>
-        public double Z { get { return Coord.Altitude; } }
-
+        public double Z { set { Coord.Altitude = value; } get { return Coord.Altitude; } }
         /// <summary>
-        /// Default constructor using only the blop
+        /// Default constructor using a blop
         /// </summary>
         /// <param name="blop"></param>
         public Point(byte[] blop) : base(blop)
@@ -34,13 +36,20 @@ namespace WKInterpreter
             int pos = 5;
             Coordinate tmp = new Coordinate();
 
-            tmp.Longitude = BitConverter.ToDouble(extractBytes(m_blop, pos, 8), 0);
-            tmp.Latitude = BitConverter.ToDouble(extractBytes(m_blop, pos + 8, 8), 0);
+            tmp.Longitude = BitConverter.ToDouble(extractBytes(blop, pos, 8), 0);
+            tmp.Latitude = BitConverter.ToDouble(extractBytes(blop, pos + 8, 8), 0);
             tmp.Altitude = 0.0d; //3D not implemented
 
             Coord = tmp;
         }
+        /// <summary>
+        /// Default constructor using a WKT string format
+        /// </summary>
+        /// <param name="str"></param>
+        public Point(string str) : base(str)
+        {
 
+        }
         /// <summary>
         /// Constructor with the Z coord
         /// </summary>

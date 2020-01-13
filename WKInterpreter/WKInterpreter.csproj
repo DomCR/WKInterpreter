@@ -46,6 +46,7 @@
     <Compile Include="Enums\CoordinateType.cs" />
     <Compile Include="Enums\EndianEncode.cs" />
     <Compile Include="Enums\GeometryType.cs" />
+    <Compile Include="Exceptions\WrongStringFormatException.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="IWKSerializable.cs" />
     <Compile Include="Line.cs" />

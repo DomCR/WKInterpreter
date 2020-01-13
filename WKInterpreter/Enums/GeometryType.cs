@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WKInterpreter.Emuns
 {
     /// <summary>
-    /// Geometry type
+    /// Well Known format, Geometry type.
     /// </summary>
     public enum GeometryType : byte
     {

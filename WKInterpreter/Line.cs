@@ -15,14 +15,14 @@ namespace WKInterpreter
             //Initialize list
             Coords = new List<Coordinate>();
 
-            int nPts = BitConverter.ToInt32(extractBytes(m_blop, 5, 4), 0);
+            int nPts = BitConverter.ToInt32(extractBytes(blop, 5, 4), 0);
             int pos = 9;
 
             //Set the points in the line
             for (int i = 0; i < nPts; i++)
             {
-                double x = BitConverter.ToDouble(extractBytes(m_blop, pos, 8), 0);
-                double y = BitConverter.ToDouble(extractBytes(m_blop, pos + 8, 8), 0);
+                double x = BitConverter.ToDouble(extractBytes(blop, pos, 8), 0);
+                double y = BitConverter.ToDouble(extractBytes(blop, pos + 8, 8), 0);
                 Coords.Add(new Coordinate(x, y));
                 pos += 16;
             }
