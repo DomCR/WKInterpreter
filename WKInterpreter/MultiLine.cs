@@ -8,7 +8,7 @@ namespace WKInterpreter
 {
     public class MultiLine : Geometry
     {
-        //*********************************************************
+        //TODO: Change the line for a list of polylines
         public List<Line> Lines { get; set; }
 
         public MultiLine(byte[] blop) : base(blop)
