@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WKInterpreter.Enums;
+using WKInterpreter.Exceptions;
 
 namespace WKInterpreter
 {
@@ -12,11 +13,22 @@ namespace WKInterpreter
     /// </summary>
     public class Coordinate : IWKSerializable
     {
+        /// <summary>
+        /// Longitude of the coordinate.
+        /// </summary>
         public double Longitude { get; set; }
+        /// <summary>
+        /// Latitude of the coordinate.
+        /// </summary>
         public double Latitude { get; set; }
+        /// <summary>
+        /// Altitude of the coordinate.
+        /// </summary>
         public double Altitude { get; set; }
+        /// <summary>
+        /// Coordinate type
+        /// </summary>
         public CoordinateType Type { get; private set; }
-
         /// <summary>
         /// Set an empty coordinate to the 0, 0, 0 point
         /// </summary>
@@ -52,6 +64,34 @@ namespace WKInterpreter
             return dist <= minDist;
         }
         //*********************************************************
+        /// <summary>
+        /// Parse a coordinate using a string format.
+        /// </summary>
+        /// <example>
+        /// ([double] [double])
+        /// </example>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static Coordinate Parse(string str)
+        {
+            Coordinate tmp = new Coordinate();
+            string[] num = str.Replace("(", "").Replace(")", "").Split(' ');
+
+            if(num.Length > 2)
+                throw new WrongStringFormatException("Wrong string format, too many arguments.");
+
+            try
+            {
+                tmp.Longitude = double.Parse(num[0]);
+                tmp.Latitude = double.Parse(num[1]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return tmp;
+        }
         /// <summary>
         /// Addition between coordinates, lat + lat0 | lon + lon0 | alt + alt0.
         /// </summary>

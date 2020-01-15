@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WKInterpreter.Exceptions;
 
 namespace WKInterpreter
 {
@@ -45,10 +46,19 @@ namespace WKInterpreter
         /// <summary>
         /// Default constructor using a WKT string format
         /// </summary>
+        /// <example>
+        /// POINT([double] [double])
+        /// </example>
         /// <param name="str"></param>
         public Point(string str) : base(str)
         {
+            if (str.Split('(')[0].ToUpper() != "POINT")
+            {
+                throw new WrongStringFormatException("Wrong string format, name does not match with the current geometry [POINT].");
+            }
 
+            //Setup the coordinate by parsing the string
+            Coord = Coordinate.Parse(str.ToUpper().Replace("POINT", ""));
         }
         /// <summary>
         /// Constructor with the Z coord
