@@ -4,5 +4,160 @@
         <name>WKInterpreter</name>
     </assembly>
     <members>
+        <member name="T:WKInterpreter.DimensionType">
+            <summary>
+            Defines the point dimensions.
+            </summary>
+        </member>
+        <member name="T:WKInterpreter.EndianType">
+            <summary>
+            Defines which endian type is encoded.
+            </summary>
+        </member>
+        <member name="T:WKInterpreter.Geometry">
+            <summary>
+            Represents a geometric object.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Geometry.GeometryType">
+            <summary>
+            Type of the geometry.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.Geometry.#ctor(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="blop"></param>
+        </member>
+        <member name="M:WKInterpreter.Geometry.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+        </member>
+        <member name="M:WKInterpreter.Geometry.extractBytes(System.Byte[],System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Extract the bytes from an array of INTs
+            </summary>
+            <param name="buffer"></param>
+            <param name="start"></param>
+            <param name="length"></param>
+            <param name="reverse"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WKInterpreter.GeometryEncode">
+            <summary>
+            Geometry encode relation.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryEncode.GEOMETRY_2D">
+            <summary>
+            Not defined geometry.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryEncode.POINT_2D">
+            <summary>
+            2D Point.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryEncode.POINT_Z">
+            <summary>
+            3D Point.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryEncode.POINT_M">
+            <summary>
+            3D Point using componen M instead of Z.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryEncode.POINT_ZM">
+            <summary>
+            4D Point.
+            </summary>
+        </member>
+        <member name="T:WKInterpreter.GeometryType">
+            <summary>
+            Well Known format, Geometry type.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.GEOMETRY">
+            <summary>
+            Not defined geometry.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.POINT">
+            <summary>
+            Geometric point.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.BREPSOLID">
+            <summary>
+            Brep solid, only compatible with XYZ dimension.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.AFFINEPLACEMENT">
+            <summary>
+            Affine Placement, only compatible with XY and XYZ dimensions.
+            </summary>
+        </member>
+        <member name="T:WKInterpreter.Point">
+            <summary>
+            Point class
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.X">
+            <summary>
+            X component.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.Y">
+            <summary>
+            Y component.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.Z">
+            <summary>
+            Z component.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.M">
+            <summary>
+            M component.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.Point.#ctor">
+            <summary>
+            Default constructor, creates an empty point.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.Readers.WktReader.readUntilToken(System.String[])">
+            <summary>
+            Read until finds the first token.
+            </summary>
+            <remarks>
+            This method advances the current index position.
+            </remarks>
+            <param name="tokens"></param>
+            <returns>Return the found token.</returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WktReader.readUntilToken``1(System.String[])">
+            <summary>
+            Read until finds the first token.
+            </summary>
+            <remarks>
+            This method advances the current index position.
+            </remarks>
+            <typeparam name="T"></typeparam>
+            <param name="tokens"></param>
+            <returns>Return the found token.</returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WktReader.readUntil(System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="match"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

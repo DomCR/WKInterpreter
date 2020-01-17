@@ -25,14 +25,44 @@ namespace WKInterpreter
         /// M component.
         /// </summary>
         public double? M { set; get; }
-        public override GeometryType GeometryType { get { return GeometryType.POINT; } }
 
+        public override GeometryType GeometryType { get { return GeometryType.POINT; } }
+        public override DimensionType Dimension
+        {
+            get
+            {
+                if ((Z.HasValue || !double.IsNaN(Z.Value)) &&
+                    (!M.HasValue || double.IsNaN(M.Value)))
+                {
+                    return DimensionType.XYZ;
+                }
+                if (M.HasValue || !double.IsNaN(M.Value) &&
+                    !Z.HasValue || double.IsNaN(Z.Value))
+                {
+                    return DimensionType.XYM;
+                }
+                if (M.HasValue || !double.IsNaN(M.Value) &&
+                    Z.HasValue || !double.IsNaN(Z.Value))
+                {
+                    return DimensionType.XYZM;
+                }
+
+                return DimensionType.XY;
+            }
+        }
+        public override bool IsEmpty { get { return (!X.HasValue || double.IsNaN(X.Value)) && (!Y.HasValue || double.IsNaN(Y.Value)); } }
+
+        //*********************************************************************************
         /// <summary>
-        /// Default constructor, creates a 2D point at 0,0.
+        /// Default constructor, creates an empty point.
         /// </summary>
         public Point() : base()
         {
-            Dimension = DimensionType.EMPTY; 
+            X = null;
+            Y = null;
+            Z = null;
+            M = null;
         }
+
     }
 }

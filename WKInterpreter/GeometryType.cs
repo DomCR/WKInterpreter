@@ -1,9 +1,11 @@
-﻿namespace WKInterpreter
+﻿using System;
+
+namespace WKInterpreter
 {
     /// <summary>
     /// Well Known format, Geometry type.
     /// </summary>
-    public enum GeometryType : byte
+    public enum GeometryType
     {
         /// <summary>
         /// Not defined geometry.
@@ -44,5 +46,14 @@
         /// Affine Placement, only compatible with XY and XYZ dimensions.
         /// </summary>
         AFFINEPLACEMENT    = 0x66, //int value 102
+    }
+
+    internal static class GeometryTypeExtension
+    {
+        public static string ToString(this GeometryType type)
+        {
+
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace WKInterpreter
@@ -9,10 +10,33 @@ namespace WKInterpreter
     /// </summary>
     public enum DimensionType
     {
-        EMPTY = -0x0001,
-        XY    = 0x0000,
-        XYZ   = 0x03E8,
-        XYM   = 0x07D0,
-        XYZM  = 0x0BB8
+        XY = 0x0000,
+        XYZ = 0x03E8,
+        XYM = 0x07D0,
+        XYZM = 0x0BB8
+    }
+
+    public static class DimensionTypeExtension
+    {
+        public static string[] GetEnumTypes()
+        {
+            return Enum.GetValues(typeof(DimensionType)).Cast<DimensionType>().Select(o => o.WktEncode()).ToArray();
+        }
+        public static string WktEncode(this DimensionType dimension)
+        {
+            switch (dimension)
+            {
+                case DimensionType.XY:
+                    return "";
+                case DimensionType.XYZ:
+                    return "Z";
+                case DimensionType.XYM:
+                    return "M";
+                case DimensionType.XYZM:
+                    return "ZM";
+                default:
+                    throw new NotImplementedException("WktEncode not implemented for the DimensinoType: " + dimension.ToString());
+            }
+        }
     }
 }
