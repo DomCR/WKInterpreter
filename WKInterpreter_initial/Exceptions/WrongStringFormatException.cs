@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WKInterpreter.Exceptions
+namespace WKInterpreter_initial.Exceptions
 {
     [Serializable]
     public class WrongStringFormatException : Exception

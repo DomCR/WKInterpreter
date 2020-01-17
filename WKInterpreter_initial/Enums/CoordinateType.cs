@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WKInterpreter
+namespace WKInterpreter_initial.Enums
 {
-    public class PolyLine
+    public enum CoordinateType
     {
+        UTM,
+        GCS
     }
 }

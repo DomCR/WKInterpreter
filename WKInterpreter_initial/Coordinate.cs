@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WKInterpreter.Enums;
-using WKInterpreter.Exceptions;
+using WKInterpreter_initial.Enums;
+using WKInterpreter_initial.Exceptions;
 
-namespace WKInterpreter
+namespace WKInterpreter_initial
 {
     /// <summary>
     /// Represents a coordinate in the space.
     /// </summary>
+    //Use only the Point geometry class
+    [Obsolete]
     public class Coordinate : IWKSerializable
     {
         /// <summary>

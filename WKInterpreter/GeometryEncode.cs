@@ -1,18 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WKInterpreter.Emuns
+﻿namespace WKInterpreter
 {
     /// <summary>
-    /// Well Known format, Geometry type.
+    /// Geometry encode relation.
     /// </summary>
-    public enum GeometryType : byte
+    public enum GeometryEncode
     {
-        NULL = 0x0000,
-        POINT = 0x0001,
+        /// <summary>
+        /// Not defined geometry.
+        /// </summary>
+        GEOMETRY_2D = 0x0000,
+        GEOMETRY_Z = 0x1000,
+        GEOMETRY_M = 0x2000,
+        GEOMETRY_ZM = 0x3000,
+
+
+        /// <summary>
+        /// 2D Point.
+        /// </summary>
+        POINT_2D = 0x0001,
+        /// <summary>
+        /// 3D Point.
+        /// </summary>
+        POINT_Z = 0x1001,
+        /// <summary>
+        /// 3D Point using componen M instead of Z.
+        /// </summary>
+        POINT_M = 0x2001,
+        /// <summary>
+        /// 4D Point.
+        /// </summary>
+        POINT_ZM = 0x3001,
+
         LINESTRING = 0x0002,
         POLYGON = 0x0003,
         MULTIPOINT = 0x0004,

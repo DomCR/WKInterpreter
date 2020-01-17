@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WKInterpreter", "WKInterpreter\WKInterpreter.csproj", "{2E71138C-C258-4BAC-A325-2D36F131887A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WKInterpreter_initial", "WKInterpreter_initial\WKInterpreter_initial.csproj", "{2E71138C-C258-4BAC-A325-2D36F131887A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WKInterpreter", "WKInterpreter\WKInterpreter.csproj", "{D86A0DEC-8F4C-42FE-A067-A7DA4BEBDB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WKInterpreter.CMD", "WKInterpreter.CMD\WKInterpreter.CMD.csproj", "{1316B8CD-4A50-4FE5-B957-E2CBE723CEC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{2E71138C-C258-4BAC-A325-2D36F131887A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E71138C-C258-4BAC-A325-2D36F131887A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E71138C-C258-4BAC-A325-2D36F131887A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D86A0DEC-8F4C-42FE-A067-A7DA4BEBDB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D86A0DEC-8F4C-42FE-A067-A7DA4BEBDB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D86A0DEC-8F4C-42FE-A067-A7DA4BEBDB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D86A0DEC-8F4C-42FE-A067-A7DA4BEBDB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1316B8CD-4A50-4FE5-B957-E2CBE723CEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1316B8CD-4A50-4FE5-B957-E2CBE723CEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1316B8CD-4A50-4FE5-B957-E2CBE723CEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1316B8CD-4A50-4FE5-B957-E2CBE723CEC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WKInterpreter.Emuns
+namespace WKInterpreter_initial.Enums
 {
     /// <summary>
     /// Defines which endian type is encoded

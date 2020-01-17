@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WKInterpreter
+namespace WKInterpreter_initial
 {
     /// <summary>
     /// The element can be serialized to WKB or WKT

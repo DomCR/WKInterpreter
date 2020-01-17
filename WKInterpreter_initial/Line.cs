@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WKInterpreter
+namespace WKInterpreter_initial
 {
     public class Line : Geometry, IWKSerializable
     {
+        [Obsolete]
         public List<Coordinate> Coords { get; set; }
+        public List<Point> Points { get; set; }
 
         public Line(byte[] blop) : base(blop)
         {
             //Initialize list
             Coords = new List<Coordinate>();
+            Points = new List<Point>();
 
             int nPts = BitConverter.ToInt32(extractBytes(blop, 5, 4), 0);
             int pos = 9;
