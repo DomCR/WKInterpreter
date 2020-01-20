@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using WKInterpreter.Extensions;
 
 namespace WKInterpreter.Readers
 {
@@ -9,7 +11,7 @@ namespace WKInterpreter.Readers
     {
         private string[] m_geometryTypes = Enum.GetValues(typeof(GeometryType)).Cast<GeometryType>().Select(o => o.ToString()).ToArray();
         private string[] m_dimensions = DimensionTypeExtension.GetEnumTypes();
-        private int? m_currIndex = null;
+        private int m_currIndex;
         private string m_buffer;
 
         /// <summary>
@@ -97,9 +99,10 @@ namespace WKInterpreter.Readers
 
             return DimensionTypeExtension.Parse(dim);
         }
-        public Point ReadCoordinate(DimensionType dimension)
+        public Point ReadCoordinate(DimensionType dimension, string coord)
         {
-            string[] svalues = readUntil(')').Split(' ');
+            //string[] svalues = readUntil(')').Split(' ');
+            string[] svalues = coord.Split(' ');
             double[] dvalues = new double[svalues.Length];
 
             for (int i = 0; i < svalues.Length; i++)
@@ -162,11 +165,13 @@ namespace WKInterpreter.Readers
         }
         public Point ReadPoint(DimensionType dimension)
         {
-            readUntil('(', true);
+            //Get the string data information of the coordinate
+            string coordinate = readGroup('(', ')', ref m_currIndex);
 
             //Read point
-            return ReadCoordinate(dimension);
+            return ReadCoordinate(dimension, coordinate);
         }
+        //public LineString
         public Geometry CreateGeometry(GeometryType geometryType)
         {
             switch (geometryType)
@@ -229,11 +234,63 @@ namespace WKInterpreter.Readers
         //*********************************************************************************
         private void skipWhitespaces()
         {
-            while (m_currIndex.GetValueOrDefault() < m_buffer.Length &&
-                m_buffer[m_currIndex.GetValueOrDefault()] == ' ')
+            while (m_currIndex < m_buffer.Length &&
+                m_buffer[m_currIndex] == ' ')
             {
                 m_currIndex++;
             }
+        }
+        /// <summary>
+        /// Read a string and return the first string enclosed between the selected characters.
+        /// </summary>
+        /// <param name="open"></param>
+        /// <param name="close"></param>
+        /// <param name="lasIndex"></param>
+        /// <returns></returns>
+        private string readGroup(char open, char close, ref int lasIndex)
+        {
+            var stack = new Stack<int>();
+            bool isFirst = true;
+            string group = "";
+
+            for (int i = m_currIndex; i < m_buffer.Length; i++)
+            {
+                if (m_buffer[i] == open)
+                {
+                    //Save the index of the open character
+                    stack.Push(i);
+
+                    //Save the index of the first open char
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                        continue;
+                    }
+                }
+                else if (m_buffer[i] == close)
+                {
+                    //Check if the sequence contains an open
+                    if (!isFirst)
+                    {
+                        stack.Pop();
+
+                        //Closing character found
+                        if (!stack.Any())
+                        {
+                            lasIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                //If the first open character have been found, start reading the string
+                if (!isFirst)
+                {
+                    group += m_buffer[i];
+                }
+            }
+
+            return group;
         }
         /// <summary>
         /// Read until finds the first token.
@@ -261,7 +318,7 @@ namespace WKInterpreter.Readers
                 {
                     pos = m_buffer.IndexOf(item);
                     token = item;
-                    m_currIndex = pos + item.Length;
+                    m_currIndex = pos.GetValueOrDefault() + item.Length;
                 }
             }
 
@@ -299,11 +356,11 @@ namespace WKInterpreter.Readers
         /// <returns></returns>
         private string readUntil(char match, bool jumpToken = false)
         {
-            for (int i = m_currIndex.GetValueOrDefault(); i < m_buffer.Length; i++)
+            for (int i = m_currIndex; i < m_buffer.Length; i++)
             {
                 if (m_buffer[i] == match)
                 {
-                    string substring = m_buffer.Substring(m_currIndex.GetValueOrDefault(), i - m_currIndex.GetValueOrDefault());
+                    string substring = m_buffer.Substring(m_currIndex, i - m_currIndex);
                     m_currIndex = jumpToken ? i + 1 : i;
                     return substring;
                 }
