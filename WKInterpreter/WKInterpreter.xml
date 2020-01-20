@@ -131,6 +131,15 @@
             Default constructor, creates an empty point.
             </summary>
         </member>
+        <member name="M:WKInterpreter.Readers.WktReader.#ctor(System.String)">
+            <summary>
+            Reads a Well-Known-Text geometry.
+            </summary>
+            <example>
+            Format: [geometry] [dimension] [empty?] ([geometric_information])
+            </example>
+            <param name="line"></param>
+        </member>
         <member name="M:WKInterpreter.Readers.WktReader.readUntilToken(System.String[])">
             <summary>
             Read until finds the first token.
@@ -152,11 +161,26 @@
             <param name="tokens"></param>
             <returns>Return the found token.</returns>
         </member>
-        <member name="M:WKInterpreter.Readers.WktReader.readUntil(System.Char)">
+        <member name="M:WKInterpreter.Readers.WktReader.readUntil(System.Char,System.Boolean)">
             <summary>
-            
+            Reads until a match is found, returns the substracted string.
             </summary>
+            <remarks>
+            This method advances the current index position.
+            </remarks>
             <param name="match"></param>
+            <param name="jumpToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WktReader.tryReadUntil(System.Char,System.String@)">
+            <summary>
+            Try to read until the match, returns the substring between the match and the current index.
+            </summary>
+            <remarks>
+            This method advances the current index position.
+            </remarks> 
+            <param name="match"></param>
+            <param name="str">Substring between the match and the current index. Null if the match isn't found.</param>
             <returns></returns>
         </member>
     </members>

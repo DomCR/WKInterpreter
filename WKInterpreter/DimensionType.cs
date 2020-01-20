@@ -22,6 +22,21 @@ namespace WKInterpreter
         {
             return Enum.GetValues(typeof(DimensionType)).Cast<DimensionType>().Select(o => o.WktEncode()).ToArray();
         }
+        public static DimensionType Parse(string str)
+        {
+            String.IsNullOrEmpty(str);
+            switch (str)
+            {
+                case "":
+                case null:
+                    return DimensionType.XY;
+                case "Z": return DimensionType.XYZ;
+                case "M": return DimensionType.XYM;
+                case "ZM": return DimensionType.XYZM;
+                default:
+                    throw new NotSupportedException(str);
+            }
+        }
         public static string WktEncode(this DimensionType dimension)
         {
             switch (dimension)

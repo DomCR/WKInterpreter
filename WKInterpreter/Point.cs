@@ -31,18 +31,15 @@ namespace WKInterpreter
         {
             get
             {
-                if ((Z.HasValue || !double.IsNaN(Z.Value)) &&
-                    (!M.HasValue || double.IsNaN(M.Value)))
+                if (Z.HasValue && !M.HasValue)
                 {
                     return DimensionType.XYZ;
                 }
-                if (M.HasValue || !double.IsNaN(M.Value) &&
-                    !Z.HasValue || double.IsNaN(Z.Value))
+                if (M.HasValue && !Z.HasValue)
                 {
                     return DimensionType.XYM;
                 }
-                if (M.HasValue || !double.IsNaN(M.Value) &&
-                    Z.HasValue || !double.IsNaN(Z.Value))
+                if (M.HasValue && Z.HasValue)
                 {
                     return DimensionType.XYZM;
                 }

@@ -12,9 +12,29 @@ namespace WKInterpreter.Readers
         private int? m_currIndex = null;
         private string m_buffer;
 
+        /// <summary>
+        /// Reads a Well-Known-Text geometry.
+        /// </summary>
+        /// <example>
+        /// Format: [geometry] [dimension] [empty?] ([geometric_information])
+        /// </example>
+        /// <param name="line"></param>
         public WktReader(string line)
         {
             m_buffer = line.ToUpper();
+        }
+        public Geometry ReadByParams()
+        {
+            if (tryReadUntil('(', out string definitions))
+            {
+
+            }
+            else
+            {
+
+            }
+
+            throw new NotImplementedException();
         }
         public Geometry Read()
         {
@@ -24,22 +44,22 @@ namespace WKInterpreter.Readers
                 throw new NotImplementedException();
 
             GeometryType geometryType = readUntilToken<GeometryType>(m_geometryTypes);
-            DimensionType dimension = ReadDimension(); //Not necessary if the geometry is not empty
+            DimensionType dimension = ReadDimension();
 
             //If the line contains the empty token, return an empty geometry
-            if (IsEmpty(m_buffer))
+            if (IsEmpty())
                 return CreateGeometry(geometryType);
 
-            return Read(geometryType);
+            return Read(geometryType, dimension);
         }
-        public Geometry Read(GeometryType geometryType)
+        public Geometry Read(GeometryType geometryType, DimensionType dimension)
         {
             switch (geometryType)
             {
                 case GeometryType.GEOMETRY:
                     throw new NotSupportedException(geometryType.ToString());
                 case GeometryType.POINT:
-                    return ReadPoint();
+                    return ReadPoint(dimension);
                 case GeometryType.LINESTRING:
                 case GeometryType.POLYGON:
                 case GeometryType.MULTIPOINT:
@@ -75,21 +95,11 @@ namespace WKInterpreter.Readers
         {
             string dim = readUntilToken(m_dimensions);
 
-            switch (dim)
-            {
-                case null: return DimensionType.XY;
-                case "Z": return DimensionType.XYZ;
-                case "M": return DimensionType.XYM;
-                case "ZM": return DimensionType.XYZM;
-                default:
-                    throw new NotSupportedException(dim);
-            }
+            return DimensionTypeExtension.Parse(dim);
         }
-        public Point ReadCoordinate()
+        public Point ReadCoordinate(DimensionType dimension)
         {
-            int initial = m_currIndex.GetValueOrDefault();
-            readUntil(')');
-            string[] svalues = m_buffer.Substring(initial, m_currIndex.GetValueOrDefault() - initial - 1).Split(' ');
+            string[] svalues = readUntil(')').Split(' ');
             double[] dvalues = new double[svalues.Length];
 
             for (int i = 0; i < svalues.Length; i++)
@@ -104,18 +114,58 @@ namespace WKInterpreter.Readers
                 }
             }
 
-            throw new NotImplementedException();
+            //Validate the readed values
+            if (dvalues.Length > 4 || dvalues.Length < 2)
+                throw new Exception();
+
+            //Point to store values
+            Point pt = new Point();
+            switch (dimension)
+            {
+                case DimensionType.XY:
+                    if (dvalues.Length != 2)
+                        throw new ArgumentException("Too many arguments for a 2D point.\nFound " + dvalues.Length + " when expecting 2.");
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    break;
+                case DimensionType.XYZ:
+                    if (dvalues.Length != 3)
+                        throw new ArgumentException("Too many arguments for a 3D point.\nFound " + dvalues.Length + " when expecting 2.");
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    pt.Z = dvalues[2];
+                    break;
+                case DimensionType.XYM:
+                    if (dvalues.Length != 3)
+                        throw new ArgumentException("Too many arguments for a 3D point.\nFound " + dvalues.Length + " when expecting 2.");
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    pt.M = dvalues[2];
+                    break;
+                case DimensionType.XYZM:
+                    if (dvalues.Length != 4)
+                        throw new ArgumentException("Too many arguments for a 3D point.\nFound " + dvalues.Length + " when expecting 2.");
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    pt.Z = dvalues[2];
+                    pt.M = dvalues[3];
+                    break;
+                default:
+                    break;
+            }
+
+            return pt;
         }
-        public Point ReadPoint()
+        public Point ReadPoint(DimensionType dimension)
         {
-            readUntil('(');
+            readUntil('(', true);
 
             //Read point
-            ReadCoordinate();
-
-            //readUntil(')');
-
-            throw new NotImplementedException();
+            return ReadCoordinate(dimension);
         }
         public Geometry CreateGeometry(GeometryType geometryType)
         {
@@ -154,6 +204,18 @@ namespace WKInterpreter.Readers
                     throw new NotSupportedException(geometryType.ToString());
             }
         }
+        public bool IsEmpty()
+        {
+            if (tryReadUntil('(', out string token))
+            {
+                if (token.Contains("EMPTY"))
+                    return true;
+                else
+                    return false;
+            }
+
+            return true;
+        }
         public bool IsEmpty(string txt)
         {
             return txt.Contains("EMPTY", StringComparison.OrdinalIgnoreCase);
@@ -165,6 +227,14 @@ namespace WKInterpreter.Readers
             m_buffer = null;
         }
         //*********************************************************************************
+        private void skipWhitespaces()
+        {
+            while (m_currIndex.GetValueOrDefault() < m_buffer.Length &&
+                m_buffer[m_currIndex.GetValueOrDefault()] == ' ')
+            {
+                m_currIndex++;
+            }
+        }
         /// <summary>
         /// Read until finds the first token.
         /// </summary>
@@ -175,7 +245,6 @@ namespace WKInterpreter.Readers
         /// <returns>Return the found token.</returns>
         private string readUntilToken(params string[] tokens)
         {
-            string line = m_buffer.Substring(m_currIndex.GetValueOrDefault());
             string token = null;
             int? pos = null;
 
@@ -185,12 +254,12 @@ namespace WKInterpreter.Readers
                 if (String.IsNullOrEmpty(item))
                     continue;
 
-                int curr = line.IndexOf(item);
+                int curr = m_buffer.IndexOf(item);
 
                 //Get the next token in the buffer
                 if ((pos == null || curr < pos) && curr >= m_currIndex)
                 {
-                    pos = line.IndexOf(item);
+                    pos = m_buffer.IndexOf(item);
                     token = item;
                     m_currIndex = pos + item.Length;
                 }
@@ -220,22 +289,49 @@ namespace WKInterpreter.Readers
             return type;
         }
         /// <summary>
-        /// 
+        /// Reads until a match is found, returns the substracted string.
         /// </summary>
+        /// <remarks>
+        /// This method advances the current index position.
+        /// </remarks>
         /// <param name="match"></param>
+        /// <param name="jumpToken"></param>
         /// <returns></returns>
-        private void readUntil(char match)
+        private string readUntil(char match, bool jumpToken = false)
         {
             for (int i = m_currIndex.GetValueOrDefault(); i < m_buffer.Length; i++)
             {
                 if (m_buffer[i] == match)
                 {
-                    m_currIndex = i + 1;
-                    return;
+                    string substring = m_buffer.Substring(m_currIndex.GetValueOrDefault(), i - m_currIndex.GetValueOrDefault());
+                    m_currIndex = jumpToken ? i + 1 : i;
+                    return substring;
                 }
             }
 
             throw new Exception("Expecting '" + match + "' after index: " + m_currIndex);
+        }
+        /// <summary>
+        /// Try to read until the match, returns the substring between the match and the current index.
+        /// </summary>
+        /// <remarks>
+        /// This method advances the current index position.
+        /// </remarks> 
+        /// <param name="match"></param>
+        /// <param name="str">Substring between the match and the current index. Null if the match isn't found.</param>
+        /// <returns></returns>
+        private bool tryReadUntil(char match, out string str)
+        {
+            try
+            {
+                str = readUntil(match);
+                return true;
+            }
+            catch (Exception)
+            {
+                str = null;
+                return false;
+            }
         }
     }
 }
