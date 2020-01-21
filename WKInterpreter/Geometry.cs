@@ -17,27 +17,11 @@ namespace WKInterpreter
         public virtual GeometryType GeometryType { get { return GeometryType.GEOMETRY; } }
         public abstract DimensionType Dimension { get; }
         public abstract bool IsEmpty { get; }
+        public abstract bool IsValid { get; }
 
         protected Geometry()
         {
             Endian = EndianType.BIG_ENDIAN;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="blop"></param>
-        protected Geometry(byte[] blop)
-        {
-            //this.Endian = (EndianType)extractBytes(blop, 0, 1).First();
-            //this.GeometryType = (GeometryType)BitConverter.ToInt32(extractBytes(blop, 1, 4), 0);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="str"></param>
-        protected Geometry(string str) : this()
-        {
-
         }
         //******************************************************************************************
         public static Geometry Deserialize(string str)
