@@ -16,11 +16,6 @@ namespace WKInterpreter.Readers
         {
             m_blop = blop;
         }
-
-        public void Dispose()
-        {
-            m_blop = null;
-        }
         public Geometry Read()
         {
             //Initialize reader
@@ -39,8 +34,9 @@ namespace WKInterpreter.Readers
                 case GeometryType.POINT:
                     return ReadPoint(dimension);
                 case GeometryType.LINESTRING:
-                //return ReadLineString(dimension);
+                    return ReadLineString(dimension);
                 case GeometryType.POLYGON:
+                    return ReadPolygon(dimension);
                 case GeometryType.MULTIPOINT:
                 case GeometryType.MULTILINESTRING:
                 case GeometryType.MULTIPOLYGON:
@@ -123,25 +119,49 @@ namespace WKInterpreter.Readers
                     throw new NotSupportedException(dimension.ToString());
             }
         }
-        public Point ReadLineString(DimensionType dimension)
+        public LineString ReadLineString(DimensionType dimension)
         {
-            throw new NotImplementedException();
-        }
-        public T ReadNext<T>()
-        {
-            //int size = sizeof(T);
+            //read the n points
+
+            //for to create n points inside the line
 
             throw new NotImplementedException();
         }
+        public Polygon ReadPolygon(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
+        public MultiPoint ReadMultiPoint(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
+        public MultiLineString ReadMultiLineString(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Read the next int in the byte array.
+        /// This method advances the current index position.
+        /// </summary>
+        /// <returns></returns>
         public int ReadNextInt()
         {
             return BitConverter.ToInt32(extractBytes(m_index, 4, ref m_index));
         }
+        /// <summary>
+        /// Read the next double in the byte array.
+        /// This method advances the current index position.
+        /// </summary>
+        /// <returns></returns>
         public double ReadNextDouble()
         {
             return BitConverter.ToDouble(extractBytes(m_index, 8, ref m_index));
         }
-        //*********************************************************
+        public void Dispose()
+        {
+            m_blop = null;
+        }
+        //*********************************************************************************
         /// <summary>
         /// Extract a number of bytes from the current array.
         /// </summary>

@@ -13,6 +13,7 @@ namespace WKInterpreter
         /// Endiand codification.
         /// </summary>
         public EndianType Endian { get; set; }
+        public int? Srid { get; set; }
         /// <summary>
         /// Type of the geometry.
         /// </summary>
@@ -25,7 +26,7 @@ namespace WKInterpreter
         /// </summary>
         protected Geometry()
         {
-
+            Srid = null;
         }
         //******************************************************************************************
         /// <summary>

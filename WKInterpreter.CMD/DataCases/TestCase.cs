@@ -8,8 +8,9 @@ namespace WKInterpreter.CMD
     {
         GeometryType Type { get; set; }
         DimensionType Dimension { get; set; }
-        public string WKT { get; set; }
-        public byte[] WKB { get; set; }
-
+        public string wkt { get; set; }
+        public byte[] wkb { get; set; }
+        public string ewkt { get; set; }
+        public byte[] ewkb { get; set; }
     }
 }

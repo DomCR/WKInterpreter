@@ -81,6 +81,21 @@ namespace WKInterpreter
 
             return dim;
         }
+        public static int GetDimensionValue(this DimensionType dimension)
+        {
+            switch (dimension)
+            {
+                case DimensionType.XY:
+                    return 2;
+                case DimensionType.XYZ:
+                case DimensionType.XYM:
+                    return 3;
+                case DimensionType.XYZM:
+                    return 4;
+                default:
+                    return -1;
+            }
+        }
         /// <summary>
         /// Codification encode for WKT.
         /// </summary>

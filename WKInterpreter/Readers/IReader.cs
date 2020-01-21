@@ -17,6 +17,10 @@ namespace WKInterpreter.Readers
         /// Reads the geometry of a point ([geometry])
         /// </summary>
         /// <returns></returns>
-        //Point ReadPoint();
+        Point ReadPoint(DimensionType dimension);
+        LineString ReadLineString(DimensionType dimension);
+        Polygon ReadPolygon(DimensionType dimension);
+        MultiPoint ReadMultiPoint(DimensionType dimension);
+        MultiLineString ReadMultiLineString(DimensionType dimension);
     }
 }

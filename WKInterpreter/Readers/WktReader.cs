@@ -36,7 +36,7 @@ namespace WKInterpreter.Readers
 
             //If the line contains the empty token, return an empty geometry
             if (IsEmpty())
-                return CreateGeometry(geometryType);
+                return CreateEmpty(geometryType);
 
             return Read(geometryType, dimension);
         }
@@ -80,92 +80,7 @@ namespace WKInterpreter.Readers
 
             throw new NotImplementedException();
         }
-        /// <summary>
-        /// Read the dimension of the Geometry.
-        /// </summary>
-        /// <returns></returns>
-        public DimensionType ReadDimension()
-        {
-            string dim = readUntilToken(m_dimensions);
-            return DimensionTypeExtension.Parse(dim);
-        }
-        public Point ReadCoordinate(DimensionType dimension, string coord)
-        {
-            //string[] svalues = readUntil(')').Split(' ');
-            string[] svalues = coord.Split(' ');
-            double[] dvalues = new double[svalues.Length];
-
-            for (int i = 0; i < svalues.Length; i++)
-            {
-                if (double.TryParse(svalues[i], out double value))
-                {
-                    dvalues[i] = value;
-                }
-                else
-                {
-                    throw new Exception("Error parsing a numeric value near the index " + m_currIndex);
-                }
-            }
-
-            //Validate the readed values
-            if (dvalues.Length > 4 || dvalues.Length < 2)
-                throw new Exception();
-
-            //Point to store values
-            Point pt = new Point();
-            switch (dimension)
-            {
-                case DimensionType.XY:
-                    if (dvalues.Length != 2)
-                        throw new ArgumentException("Too many arguments for a 2D point.\nFound " + dvalues.Length + " when expecting 2.");
-                    //Setup the values
-                    pt.X = dvalues[0];
-                    pt.Y = dvalues[1];
-                    break;
-                case DimensionType.XYZ:
-                    if (dvalues.Length != 3)
-                        throw new ArgumentException("Too many arguments for a 3D point.\nFound " + dvalues.Length + " when expecting 2.");
-                    //Setup the values
-                    pt.X = dvalues[0];
-                    pt.Y = dvalues[1];
-                    pt.Z = dvalues[2];
-                    break;
-                case DimensionType.XYM:
-                    if (dvalues.Length != 3)
-                        throw new ArgumentException("Too many arguments for a 3D point.\nFound " + dvalues.Length + " when expecting 2.");
-                    //Setup the values
-                    pt.X = dvalues[0];
-                    pt.Y = dvalues[1];
-                    pt.M = dvalues[2];
-                    break;
-                case DimensionType.XYZM:
-                    if (dvalues.Length != 4)
-                        throw new ArgumentException("Too many arguments for a 3D point.\nFound " + dvalues.Length + " when expecting 2.");
-                    //Setup the values
-                    pt.X = dvalues[0];
-                    pt.Y = dvalues[1];
-                    pt.Z = dvalues[2];
-                    pt.M = dvalues[3];
-                    break;
-                default:
-                    break;
-            }
-
-            return pt;
-        }
-        public Point ReadPoint(DimensionType dimension)
-        {
-            //Get the string data information of the coordinate
-            string coordinate = readGroup('(', ')', ref m_currIndex);
-
-            //Read point
-            return ReadCoordinate(dimension, coordinate);
-        }
-        public LineString ReadLineString(DimensionType dimension)
-        {
-            throw new NotImplementedException();
-        }
-        public Geometry CreateGeometry(GeometryType geometryType)
+        public Geometry CreateEmpty(GeometryType geometryType)
         {
             switch (geometryType)
             {
@@ -201,6 +116,122 @@ namespace WKInterpreter.Readers
                 default:
                     throw new NotSupportedException(geometryType.ToString());
             }
+        }
+        /// <summary>
+        /// Read the dimension of the Geometry.
+        /// </summary>
+        /// <returns></returns>
+        public DimensionType ReadDimension()
+        {
+            string dim = readUntilToken(m_dimensions);
+            return DimensionTypeExtension.Parse(dim);
+        }
+        public Point ReadCoordinate(DimensionType dimension, string coord)
+        {
+            string[] svalues = coord.Split(' ');
+            double[] dvalues = new double[svalues.Length];
+
+            for (int i = 0; i < svalues.Length; i++)
+            {
+                if (double.TryParse(svalues[i], out double value))
+                {
+                    dvalues[i] = value;
+                }
+                else
+                {
+                    throw new Exception("Error parsing a numeric value near the index " + m_currIndex);
+                }
+            }
+
+            //Validate the readed values
+            if (dimension.GetDimensionValue() != dvalues.Length)
+                throw new Exception("Wrong number of arguments, found " + dvalues.Length + " expecting " + dimension.GetDimensionValue());
+
+            //Point to store values
+            Point pt = new Point();
+            
+            switch (dimension)
+            {
+                case DimensionType.XY:
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    break;
+                case DimensionType.XYZ:
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    pt.Z = dvalues[2];
+                    break;
+                case DimensionType.XYM:
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    pt.M = dvalues[2];
+                    break;
+                case DimensionType.XYZM:
+                    //Setup the values
+                    pt.X = dvalues[0];
+                    pt.Y = dvalues[1];
+                    pt.Z = dvalues[2];
+                    pt.M = dvalues[3];
+                    break;
+                default:
+                    break;
+            }
+
+            return pt;
+        }
+        public Point ReadCoordinate(string coord)
+        {
+            string[] svalues = coord.Split(' ');
+            double?[] dvalues = new double?[] { null, null, null, null };
+
+            for (int i = 0; i < svalues.Length; i++)
+            {
+                if (double.TryParse(svalues[i], out double value))
+                {
+                    dvalues[i] = value;
+                }
+                else
+                {
+                    throw new Exception("Error parsing a numeric value near the index " + m_currIndex);
+                }
+            }
+
+            return new Point(dvalues[0], dvalues[1], dvalues[2], dvalues[3]);
+        }
+        public Point ReadPoint(DimensionType dimension)
+        {
+            //Get the string data information of the coordinate
+            string coordinate = readGroup('(', ')', ref m_currIndex);
+
+            //Read point
+            return ReadCoordinate(dimension, coordinate);
+        }
+        public LineString ReadLineString(DimensionType dimension)
+        {
+            string[] linePoints = readGroup('(', ')', ref m_currIndex).Split(',');
+            LineString line = new LineString();
+
+            foreach (string pt in linePoints)
+            {
+                line.AddPoint(ReadCoordinate(dimension, pt));
+            }
+
+            return line;
+        }
+        public Polygon ReadPolygon(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
+        public MultiPoint ReadMultiPoint(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
+        public MultiLineString ReadMultiLineString(DimensionType dimension)
+        {
+            throw new NotImplementedException();
         }
         public bool IsEmpty()
         {

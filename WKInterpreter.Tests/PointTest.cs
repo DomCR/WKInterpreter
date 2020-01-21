@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Xunit.Sdk;
 
 namespace WKInterpreter.Tests
 {
@@ -24,7 +25,6 @@ namespace WKInterpreter.Tests
             //Empty test
             Point pt = Geometry.Deserialize("POINT EMPTY") as Point;
             Assert.True(pt.IsEmpty);
-
         }
 
         [Fact]
