@@ -30,7 +30,7 @@ namespace WKInterpreter
     /// <summary>
     /// Extension methods for the DimensionType enum.
     /// </summary>
-    public static class DimensionTypeExtension
+    internal static class DimensionTypeExtension
     {
         /// <summary>
         /// Return all the dimension types in it's wkt form. 
@@ -59,6 +59,27 @@ namespace WKInterpreter
                 default:
                     throw new NotSupportedException(str);
             }
+        }
+        public static DimensionType Parse(int value, out GeometryType type)
+        {
+            int tmp = value;
+            type = GeometryType.GEOMETRY;
+            DimensionType dim = DimensionType.XY;
+
+            for (int i = 0; i < GetEnumTypes().Count(); i++)
+            {
+                if (tmp % 1000 == 0)
+                {
+                    tmp -= 1000;
+                }
+                else
+                {
+                    type = (GeometryType)(tmp % 1000);
+                    dim = (DimensionType)(value - (tmp % 1000));
+                }
+            }
+
+            return dim;
         }
         /// <summary>
         /// Codification encode for WKT.

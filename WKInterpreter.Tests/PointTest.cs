@@ -17,6 +17,7 @@ namespace WKInterpreter.Tests
             Assert.True(pt.Z == null);
             Assert.True(pt.M == null);
         }
+
         [Fact]
         public void TestDeserializeEmpy()
         {
@@ -25,10 +26,26 @@ namespace WKInterpreter.Tests
             Assert.True(pt.IsEmpty);
 
         }
+
         [Fact]
         public void TestDeserializeXY()
         {
             Point pt = Geometry.Deserialize("POINT(1 2)") as Point;
+
+            Assert.True(pt.X == 1);
+            Assert.True(pt.Y == 2);
+            Assert.True(pt.Z == null);
+            Assert.True(pt.M == null);
+
+            byte[] blop = new byte[] 
+            {
+                0x01,
+                0x01, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x3f, 
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40 
+            };
+
+            pt = Geometry.Deserialize(blop) as Point;
 
             Assert.True(pt.X == 1);
             Assert.True(pt.Y == 2);
@@ -40,6 +57,22 @@ namespace WKInterpreter.Tests
         public void TestDeserializeXYZ()
         {
             Point pt = Geometry.Deserialize("POINT Z(1 2 3)") as Point;
+
+            Assert.True(pt.X == 1);
+            Assert.True(pt.Y == 2);
+            Assert.True(pt.Z == 3);
+            Assert.True(pt.M == null);
+
+            byte[] blop = new byte[]
+            {
+                0x01,
+                0xe9, 0x03, 0x00, 0x00,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x3f,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40,
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x40
+            };
+
+            pt = Geometry.Deserialize(blop) as Point;
 
             Assert.True(pt.X == 1);
             Assert.True(pt.Y == 2);

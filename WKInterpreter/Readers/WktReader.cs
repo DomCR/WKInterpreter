@@ -13,7 +13,6 @@ namespace WKInterpreter.Readers
         private string[] m_dimensions = DimensionTypeExtension.GetEnumTypes();
         private int m_currIndex;
         private string m_buffer;
-
         /// <summary>
         /// Reads a Well-Known-Text geometry.
         /// </summary>
@@ -24,19 +23,6 @@ namespace WKInterpreter.Readers
         public WktReader(string line)
         {
             m_buffer = line.ToUpper();
-        }
-        public Geometry ReadByParams()
-        {
-            if (tryReadUntil('(', out string definitions))
-            {
-
-            }
-            else
-            {
-
-            }
-
-            throw new NotImplementedException();
         }
         public Geometry Read()
         {
@@ -63,6 +49,7 @@ namespace WKInterpreter.Readers
                 case GeometryType.POINT:
                     return ReadPoint(dimension);
                 case GeometryType.LINESTRING:
+                    return ReadLineString(dimension);
                 case GeometryType.POLYGON:
                 case GeometryType.MULTIPOINT:
                 case GeometryType.MULTILINESTRING:
@@ -93,10 +80,13 @@ namespace WKInterpreter.Readers
 
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// Read the dimension of the Geometry.
+        /// </summary>
+        /// <returns></returns>
         public DimensionType ReadDimension()
         {
             string dim = readUntilToken(m_dimensions);
-
             return DimensionTypeExtension.Parse(dim);
         }
         public Point ReadCoordinate(DimensionType dimension, string coord)
@@ -171,7 +161,10 @@ namespace WKInterpreter.Readers
             //Read point
             return ReadCoordinate(dimension, coordinate);
         }
-        //public LineString
+        public LineString ReadLineString(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
         public Geometry CreateGeometry(GeometryType geometryType)
         {
             switch (geometryType)
@@ -221,10 +214,6 @@ namespace WKInterpreter.Readers
 
             return true;
         }
-        public bool IsEmpty(string txt)
-        {
-            return txt.Contains("EMPTY", StringComparison.OrdinalIgnoreCase);
-        }
         public void Dispose()
         {
             m_geometryTypes = null;
@@ -245,8 +234,8 @@ namespace WKInterpreter.Readers
         /// </summary>
         /// <param name="open"></param>
         /// <param name="close"></param>
-        /// <param name="lasIndex"></param>
-        /// <returns></returns>
+        /// <param name="lasIndex">Index of the closing character.</param>
+        /// <returns>The string between the 2 tokens.</returns>
         private string readGroup(char open, char close, ref int lasIndex)
         {
             var stack = new Stack<int>();
@@ -294,10 +283,8 @@ namespace WKInterpreter.Readers
         }
         /// <summary>
         /// Read until finds the first token.
-        /// </summary>
-        /// <remarks>
         /// This method advances the current index position.
-        /// </remarks>
+        /// </summary>
         /// <param name="tokens"></param>
         /// <returns>Return the found token.</returns>
         private string readUntilToken(params string[] tokens)
@@ -326,10 +313,8 @@ namespace WKInterpreter.Readers
         }
         /// <summary>
         /// Read until finds the first token.
-        /// </summary>
-        /// <remarks>
         /// This method advances the current index position.
-        /// </remarks>
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tokens"></param>
         /// <returns>Return the found token.</returns>
@@ -347,13 +332,12 @@ namespace WKInterpreter.Readers
         }
         /// <summary>
         /// Reads until a match is found, returns the substracted string.
-        /// </summary>
-        /// <remarks>
         /// This method advances the current index position.
-        /// </remarks>
+        /// </summary>
         /// <param name="match"></param>
         /// <param name="jumpToken"></param>
         /// <returns></returns>
+        [Obsolete("Not structured method, must be deleted.")]
         private string readUntil(char match, bool jumpToken = false)
         {
             for (int i = m_currIndex; i < m_buffer.Length; i++)
@@ -370,13 +354,12 @@ namespace WKInterpreter.Readers
         }
         /// <summary>
         /// Try to read until the match, returns the substring between the match and the current index.
-        /// </summary>
-        /// <remarks>
         /// This method advances the current index position.
-        /// </remarks> 
+        /// </summary>
         /// <param name="match"></param>
         /// <param name="str">Substring between the match and the current index. Null if the match isn't found.</param>
         /// <returns></returns>
+        [Obsolete("Not structured method, must be deleted.")]
         private bool tryReadUntil(char match, out string str)
         {
             try

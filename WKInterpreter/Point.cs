@@ -84,6 +84,19 @@ namespace WKInterpreter
             Z = null;
             M = null;
         }
+        public Point(double? x, double? y) : this()
+        {
+            X = x;
+            Y = y;
+        }
+        public Point(double? x, double? y, double? z) : this(x, y)
+        {
+            Z = z;
+        }
+        public Point(double? x, double? y, double? z, double? m) : this(x, y, z)
+        {
+            M = m;
+        }
         //*********************************************************************************
         /// <summary>
         /// Check if the point is near or at the same coordinate as this one.

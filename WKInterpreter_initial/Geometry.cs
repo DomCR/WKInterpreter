@@ -166,7 +166,7 @@ namespace WKInterpreter_initial
         }
         //*********************************************************
         /// <summary>
-        /// Extract the bytes from an array of INTs
+        /// Extract a number of bytes from the current array.
         /// </summary>
         /// <param name="buffer"></param>
         /// <param name="start"></param>

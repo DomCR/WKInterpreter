@@ -9,6 +9,51 @@
             Defines the point dimensions.
             </summary>
         </member>
+        <member name="F:WKInterpreter.DimensionType.XY">
+            <summary>
+            2D dimension, integer value 0.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.DimensionType.XYZ">
+            <summary>
+            3D dimension using the Z component, integer value 1000.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.DimensionType.XYM">
+            <summary>
+            3D dimension using the M component, integer value 2000.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.DimensionType.XYZM">
+            <summary>
+            4D dimension, integer value 3000.
+            </summary>
+        </member>
+        <member name="T:WKInterpreter.DimensionTypeExtension">
+            <summary>
+            Extension methods for the DimensionType enum.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.DimensionTypeExtension.GetEnumTypes">
+            <summary>
+            Return all the dimension types in it's wkt form. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.DimensionTypeExtension.Parse(System.String)">
+            <summary>
+            Parse a dimension type from WKT.
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.DimensionTypeExtension.WktEncode(WKInterpreter.DimensionType)">
+            <summary>
+            Codification encode for WKT.
+            </summary>
+            <param name="dimension"></param>
+            <returns></returns>
+        </member>
         <member name="T:WKInterpreter.EndianType">
             <summary>
             Defines which endian type is encoded.
@@ -19,62 +64,32 @@
             Represents a geometric object.
             </summary>
         </member>
+        <member name="P:WKInterpreter.Geometry.Endian">
+            <summary>
+            Endiand codification.
+            </summary>
+        </member>
         <member name="P:WKInterpreter.Geometry.GeometryType">
             <summary>
             Type of the geometry.
             </summary>
         </member>
-        <member name="M:WKInterpreter.Geometry.#ctor(System.Byte[])">
+        <member name="M:WKInterpreter.Geometry.#ctor">
             <summary>
-            
+            Default constructor for an empty geometry.
             </summary>
-            <param name="blop"></param>
         </member>
-        <member name="M:WKInterpreter.Geometry.#ctor(System.String)">
+        <member name="M:WKInterpreter.Geometry.Deserialize(System.String)">
             <summary>
-            
+            Reads a Well-Known-Text geometry.
             </summary>
+            <example>
+            Format: [geometry] [dimension] [empty?] ([geometric_information])
+            </example>
+            <remarks>
+            Not implemented: [SRID];[WKT]
+            </remarks>
             <param name="str"></param>
-        </member>
-        <member name="M:WKInterpreter.Geometry.extractBytes(System.Byte[],System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Extract the bytes from an array of INTs
-            </summary>
-            <param name="buffer"></param>
-            <param name="start"></param>
-            <param name="length"></param>
-            <param name="reverse"></param>
-            <returns></returns>
-        </member>
-        <member name="T:WKInterpreter.GeometryEncode">
-            <summary>
-            Geometry encode relation.
-            </summary>
-        </member>
-        <member name="F:WKInterpreter.GeometryEncode.GEOMETRY_2D">
-            <summary>
-            Not defined geometry.
-            </summary>
-        </member>
-        <member name="F:WKInterpreter.GeometryEncode.POINT_2D">
-            <summary>
-            2D Point.
-            </summary>
-        </member>
-        <member name="F:WKInterpreter.GeometryEncode.POINT_Z">
-            <summary>
-            3D Point.
-            </summary>
-        </member>
-        <member name="F:WKInterpreter.GeometryEncode.POINT_M">
-            <summary>
-            3D Point using componen M instead of Z.
-            </summary>
-        </member>
-        <member name="F:WKInterpreter.GeometryEncode.POINT_ZM">
-            <summary>
-            4D Point.
-            </summary>
         </member>
         <member name="T:WKInterpreter.GeometryType">
             <summary>
@@ -99,6 +114,11 @@
         <member name="F:WKInterpreter.GeometryType.AFFINEPLACEMENT">
             <summary>
             Affine Placement, only compatible with XY and XYZ dimensions.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.LineString.GeometryType">
+            <summary>
+            Geometry type of the object, LINESTRING.
             </summary>
         </member>
         <member name="T:WKInterpreter.Point">
@@ -126,10 +146,53 @@
             M component.
             </summary>
         </member>
+        <member name="P:WKInterpreter.Point.GeometryType">
+            <summary>
+            Geometry type of the object, POINT.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.Dimension">
+            <summary>
+            Dimensions of the object, based on the non null values.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.IsEmpty">
+            <summary>
+            X and Y the components of the object are null or NaN.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.Point.IsValid">
+            <summary>
+            Return if the object is a valid one based on it's components.
+            </summary>
+        </member>
         <member name="M:WKInterpreter.Point.#ctor">
             <summary>
             Default constructor, creates an empty point.
             </summary>
+        </member>
+        <member name="M:WKInterpreter.Point.IsNear(WKInterpreter.Point,System.Double)">
+            <summary>
+            Check if the point is near or at the same coordinate as this one.
+            </summary>
+            <param name="other"></param>
+            <param name="tolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.IReader.Read">
+            <summary>
+            Start reading the Stream of the reader.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WkbReader.extractBytes(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Extract a number of bytes from the current array.
+            </summary>
+            <param name="start"></param>
+            <param name="length"></param>
+            <param name="lastIndex"></param>
+            <returns></returns>
         </member>
         <member name="M:WKInterpreter.Readers.WktReader.#ctor(System.String)">
             <summary>
@@ -140,23 +203,34 @@
             </example>
             <param name="line"></param>
         </member>
+        <member name="M:WKInterpreter.Readers.WktReader.ReadDimension">
+            <summary>
+            Read the dimension of the Geometry.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WktReader.readGroup(System.Char,System.Char,System.Int32@)">
+            <summary>
+            Read a string and return the first string enclosed between the selected characters.
+            </summary>
+            <param name="open"></param>
+            <param name="close"></param>
+            <param name="lasIndex">Index of the closing character.</param>
+            <returns>The string between the 2 tokens.</returns>
+        </member>
         <member name="M:WKInterpreter.Readers.WktReader.readUntilToken(System.String[])">
             <summary>
             Read until finds the first token.
-            </summary>
-            <remarks>
             This method advances the current index position.
-            </remarks>
+            </summary>
             <param name="tokens"></param>
             <returns>Return the found token.</returns>
         </member>
         <member name="M:WKInterpreter.Readers.WktReader.readUntilToken``1(System.String[])">
             <summary>
             Read until finds the first token.
-            </summary>
-            <remarks>
             This method advances the current index position.
-            </remarks>
+            </summary>
             <typeparam name="T"></typeparam>
             <param name="tokens"></param>
             <returns>Return the found token.</returns>
@@ -164,10 +238,8 @@
         <member name="M:WKInterpreter.Readers.WktReader.readUntil(System.Char,System.Boolean)">
             <summary>
             Reads until a match is found, returns the substracted string.
-            </summary>
-            <remarks>
             This method advances the current index position.
-            </remarks>
+            </summary>
             <param name="match"></param>
             <param name="jumpToken"></param>
             <returns></returns>
@@ -175,10 +247,8 @@
         <member name="M:WKInterpreter.Readers.WktReader.tryReadUntil(System.Char,System.String@)">
             <summary>
             Try to read until the match, returns the substring between the match and the current index.
-            </summary>
-            <remarks>
             This method advances the current index position.
-            </remarks> 
+            </summary>
             <param name="match"></param>
             <param name="str">Substring between the match and the current index. Null if the match isn't found.</param>
             <returns></returns>

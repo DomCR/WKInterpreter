@@ -9,8 +9,10 @@ namespace WKInterpreter
     /// </summary>
     public abstract class Geometry
     {
+        /// <summary>
+        /// Endiand codification.
+        /// </summary>
         public EndianType Endian { get; set; }
-
         /// <summary>
         /// Type of the geometry.
         /// </summary>
@@ -18,12 +20,24 @@ namespace WKInterpreter
         public abstract DimensionType Dimension { get; }
         public abstract bool IsEmpty { get; }
         public abstract bool IsValid { get; }
-
+        /// <summary>
+        /// Default constructor for an empty geometry.
+        /// </summary>
         protected Geometry()
         {
-            Endian = EndianType.BIG_ENDIAN;
+
         }
         //******************************************************************************************
+        /// <summary>
+        /// Reads a Well-Known-Text geometry.
+        /// </summary>
+        /// <example>
+        /// Format: [geometry] [dimension] [empty?] ([geometric_information])
+        /// </example>
+        /// <remarks>
+        /// Not implemented: [SRID];[WKT]
+        /// </remarks>
+        /// <param name="str"></param>
         public static Geometry Deserialize(string str)
         {
             Geometry value = null;
@@ -37,9 +51,14 @@ namespace WKInterpreter
         }
         public static Geometry Deserialize(byte[] blop)
         {
-            //return WkbReader.Read(blop);
+            Geometry value = null;
 
-            throw new NotImplementedException();
+            using (WkbReader reader = new WkbReader(blop))
+            {
+                value = reader.Read();
+            }
+
+            return value;
         }
         public static string TextSerialize()
         {
@@ -48,22 +67,6 @@ namespace WKInterpreter
         public static byte[] BinarySerialize()
         {
             throw new NotImplementedException();
-        }
-        //******************************************************************************************
-        /// <summary>
-        /// Extract the bytes from an array of INTs
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="start"></param>
-        /// <param name="length"></param>
-        /// <param name="reverse"></param>
-        /// <returns></returns>
-        protected static byte[] extractBytes(byte[] buffer, int start, int length, bool reverse = false)
-        {
-            byte[] result = new byte[length];
-            Array.Copy(buffer, start, result, 0, length);
-
-            return reverse ? result.Reverse().ToArray() : result;
         }
     }
 }
