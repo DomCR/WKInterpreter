@@ -116,6 +116,11 @@
             Affine Placement, only compatible with XY and XYZ dimensions.
             </summary>
         </member>
+        <member name="P:WKInterpreter.LineString.Points">
+            <summary>
+            Points forming the line.
+            </summary>
+        </member>
         <member name="P:WKInterpreter.LineString.GeometryType">
             <summary>
             Geometry type of the object, LINESTRING.
@@ -182,6 +187,26 @@
         <member name="M:WKInterpreter.Readers.IReader.Read">
             <summary>
             Start reading the Stream of the reader.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.IReader.ReadPoint(WKInterpreter.DimensionType)">
+            <summary>
+            Reads the geometry of a point ([geometry])
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WkbReader.ReadNextInt">
+            <summary>
+            Read the next int in the byte array.
+            This method advances the current index position.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Readers.WkbReader.ReadNextDouble">
+            <summary>
+            Read the next double in the byte array.
+            This method advances the current index position.
             </summary>
             <returns></returns>
         </member>

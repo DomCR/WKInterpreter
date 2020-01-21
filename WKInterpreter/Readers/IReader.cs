@@ -12,6 +12,7 @@ namespace WKInterpreter.Readers
         /// </summary>
         /// <returns></returns>
         Geometry Read();
+
         //Readers by type
         /// <summary>
         /// Reads the geometry of a point ([geometry])

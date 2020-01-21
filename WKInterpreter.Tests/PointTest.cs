@@ -7,7 +7,7 @@ namespace WKInterpreter.Tests
     public class PointTest
     {
         [Fact]
-        public void TestDefaultContructors()
+        public void TestDefaultContructor()
         {
             Point pt = new Point();
 

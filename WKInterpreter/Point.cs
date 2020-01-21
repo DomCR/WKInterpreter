@@ -84,15 +84,33 @@ namespace WKInterpreter
             Z = null;
             M = null;
         }
+        /// <summary>
+        /// Initialize a 2D point.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public Point(double? x, double? y) : this()
         {
             X = x;
             Y = y;
         }
+        /// <summary>
+        /// Initialize a 3D point, using the z component.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public Point(double? x, double? y, double? z) : this(x, y)
         {
             Z = z;
         }
+        /// <summary>
+        /// Initialize a 4D point.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <param name="m"></param>
         public Point(double? x, double? y, double? z, double? m) : this(x, y, z)
         {
             M = m;

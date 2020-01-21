@@ -10,7 +10,6 @@ namespace WKInterpreter.Readers
         private byte[] m_blop;
         private EndianType m_endian;
         private int m_index;
-        private bool m_hello = false;
 
         public WkbReader(byte[] blop)
         {
