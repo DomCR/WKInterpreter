@@ -28,7 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WKInterpreter.CMD\WKInterpreter.CMD.csproj" />
     <ProjectReference Include="..\WKInterpreter\WKInterpreter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>

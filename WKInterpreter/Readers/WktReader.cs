@@ -89,10 +89,15 @@ namespace WKInterpreter.Readers
                 case GeometryType.POINT:
                     return new Point();
                 case GeometryType.LINESTRING:
+                    return new LineString();
                 case GeometryType.POLYGON:
+                    return new Polygon();
                 case GeometryType.MULTIPOINT:
+                    return new MultiPoint();
                 case GeometryType.MULTILINESTRING:
+                    return new MultiLineString();
                 case GeometryType.MULTIPOLYGON:
+                    //return new Multip
                 case GeometryType.GEOMETRYCOLLECTION:
                 case GeometryType.CIRCULARSTRING:
                 case GeometryType.COMPOUNDCURVE:
@@ -123,7 +128,7 @@ namespace WKInterpreter.Readers
         /// <returns></returns>
         public DimensionType ReadDimension()
         {
-            string dim = readUntilToken(m_dimensions);
+            string dim = readUntilToken(m_dimensions.Reverse().ToArray());
             return DimensionTypeExtension.Parse(dim);
         }
         public Point ReadCoordinate(DimensionType dimension, string coord)

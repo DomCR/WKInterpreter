@@ -124,7 +124,40 @@ namespace WKInterpreter
         /// <returns></returns>
         public bool IsNear(Point other, double tolerance = 0.0d)
         {
-            throw new NotImplementedException();
+            //Argument validation
+            if (other.IsEmpty || this.IsEmpty)
+                throw new ArgumentException("Point cannot be empty.");
+            if (this.Dimension != other.Dimension)
+                throw new ArgumentException("Points must have the same dimension.");
+            if (tolerance < 0)
+                throw new ArgumentOutOfRangeException("Tolerance cannot be less than 0.");
+
+            double xdis = Math.Pow(X.GetValueOrDefault() - other.X.GetValueOrDefault(), 2);
+            double ydis = Math.Pow(Y.GetValueOrDefault() - other.Y.GetValueOrDefault(), 2);
+            double zdis = 0.0d;
+            double mdis = 0.0d;
+
+            switch (this.Dimension)
+            {
+                case DimensionType.XY:
+                    break;
+                case DimensionType.XYZ:
+                    zdis = Math.Pow(Z.GetValueOrDefault() - other.Z.GetValueOrDefault(), 2);
+                    break;
+                case DimensionType.XYM:
+                    mdis = Math.Pow(M.GetValueOrDefault() - other.M.GetValueOrDefault(), 2);
+                    break;
+                case DimensionType.XYZM:
+                    zdis = Math.Pow(Z.GetValueOrDefault() - other.Z.GetValueOrDefault(), 2);
+                    mdis = Math.Pow(M.GetValueOrDefault() - other.M.GetValueOrDefault(), 2);
+                    break;
+                default:
+                    break;
+            }
+
+            double dist = Math.Sqrt(xdis + ydis + zdis + mdis);
+
+            return dist <= tolerance;
         }
     }
 }

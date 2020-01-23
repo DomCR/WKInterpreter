@@ -7,7 +7,11 @@ using WKInterpreter.Exceptions;
 
 namespace WKInterpreter
 {
-    public class GeometryCollection<T> : Geometry, IEnumerable<T> where T : Geometry
+    /// <summary>
+    /// Collection of geometries.
+    /// </summary>
+    /// <typeparam name="T">Geometry type to define the collection.</typeparam>
+    public class GeometryCollection<T> : Geometry where T : Geometry
     {
         public override GeometryType GeometryType { get { return GeometryType.GEOMETRYCOLLECTION; } }
         public override DimensionType Dimension
@@ -60,16 +64,6 @@ namespace WKInterpreter
                 throw new ArgumentException("Cannot add an empty point.");
 
             m_geometries.Add(element);
-        }
-        //*********************************************************************************
-        public IEnumerator<T> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
         }
     }
 }

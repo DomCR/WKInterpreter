@@ -29,35 +29,50 @@
             4D dimension, integer value 3000.
             </summary>
         </member>
-        <member name="T:WKInterpreter.DimensionTypeExtension">
+        <member name="T:WKInterpreter.EndianType">
+            <summary>
+            Defines which endian type is encoded.
+            </summary>
+        </member>
+        <member name="T:WKInterpreter.Extensions.DimensionTypeExtension">
             <summary>
             Extension methods for the DimensionType enum.
             </summary>
         </member>
-        <member name="M:WKInterpreter.DimensionTypeExtension.GetEnumTypes">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.GetEnumTypes">
             <summary>
             Return all the dimension types in it's wkt form. 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.DimensionTypeExtension.Parse(System.String)">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.Parse(System.String)">
             <summary>
             Parse a dimension type from WKT.
             </summary>
             <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.DimensionTypeExtension.WktEncode(WKInterpreter.DimensionType)">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.Parse(System.Int32,WKInterpreter.GeometryType@)">
+            <summary>
+            Parse a int into a dimension and a geometry type.
+            </summary>
+            <param name="value"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.WktEncode(WKInterpreter.DimensionType)">
             <summary>
             Codification encode for WKT.
             </summary>
             <param name="dimension"></param>
             <returns></returns>
         </member>
-        <member name="T:WKInterpreter.EndianType">
+        <member name="M:WKInterpreter.Extensions.StringExtension.ToByteArray(System.String)">
             <summary>
-            Defines which endian type is encoded.
+            Gets a string and returns an array of bytes
             </summary>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="T:WKInterpreter.Geometry">
             <summary>
@@ -91,6 +106,12 @@
             </remarks>
             <param name="str"></param>
         </member>
+        <member name="T:WKInterpreter.GeometryCollection`1">
+            <summary>
+            Collection of geometries.
+            </summary>
+            <typeparam name="T">Geometry type to define the collection.</typeparam>
+        </member>
         <member name="T:WKInterpreter.GeometryType">
             <summary>
             Well Known format, Geometry type.
@@ -116,12 +137,34 @@
             Affine Placement, only compatible with XY and XYZ dimensions.
             </summary>
         </member>
-        <member name="P:WKInterpreter.LineString.Points">
+        <member name="T:WKInterpreter.LineString">
             <summary>
-            Points forming the line.
+            LineString class, implements a geometry collection of points.
             </summary>
         </member>
         <member name="P:WKInterpreter.LineString.GeometryType">
+            <summary>
+            Geometry type of the object, LINESTRING.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.LineString.AddPoint(WKInterpreter.Point)">
+            <summary>
+            
+            </summary>
+            <param name="point"></param>
+        </member>
+        <member name="M:WKInterpreter.LineString.IsClosed">
+            <summary>
+            Check if the line is closed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:WKInterpreter.MultiLineString.GeometryType">
+            <summary>
+            Geometry type of the object, MULTILINESTRING.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.MultiPoint.GeometryType">
             <summary>
             Geometry type of the object, LINESTRING.
             </summary>
@@ -175,6 +218,30 @@
             <summary>
             Default constructor, creates an empty point.
             </summary>
+        </member>
+        <member name="M:WKInterpreter.Point.#ctor(System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Initialize a 2D point.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:WKInterpreter.Point.#ctor(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Initialize a 3D point, using the z component.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+        </member>
+        <member name="M:WKInterpreter.Point.#ctor(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+            <summary>
+            Initialize a 4D point.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+            <param name="m"></param>
         </member>
         <member name="M:WKInterpreter.Point.IsNear(WKInterpreter.Point,System.Double)">
             <summary>

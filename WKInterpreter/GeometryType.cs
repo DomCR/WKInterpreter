@@ -47,13 +47,4 @@ namespace WKInterpreter
         /// </summary>
         AFFINEPLACEMENT    = 0x66, //int value 102
     }
-
-    internal static class GeometryTypeExtension
-    {
-        public static string ToString(this GeometryType type)
-        {
-
-            throw new NotImplementedException();
-        }
-    }
 }
