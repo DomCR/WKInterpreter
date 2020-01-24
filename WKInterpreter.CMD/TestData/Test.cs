@@ -10,13 +10,11 @@ namespace WKInterpreter.CMD.TestData
         public GeometryType Type { get; set; }
         public DimensionType Dimension { get; set; }
         public string wkt { get; set; }
-        public string wkb { get; set; }
+        public byte[] wkb_big { get; set; }
+        public byte[] wkb_little { get; set; }
         public string ewkt { get; set; }
-        public string ewkb { get; set; }
-        public string wkbxdr { get; set; }
-        public string ewkbxdr { get; set; }
-        public string ewkbnosrid { get; set; }
-        public string ewkbxdrnosrid { get; set; }
+        public byte[] ewkb_big { get; set; }
+        public byte[] ewkb_little { get; set; }
         public Geometry Validation { get; set; }
 
         public override string ToString()

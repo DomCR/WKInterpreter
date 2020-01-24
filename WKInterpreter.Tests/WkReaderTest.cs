@@ -9,11 +9,11 @@ using Xunit;
 
 namespace WKInterpreter.Tests
 {
-    public class WktReaderTest
+    public class WkReaderTest
     {
         public static TheoryData<TestCase> TestData;
 
-        static WktReaderTest()
+        static WkReaderTest()
         {
             TestData = new TheoryData<TestCase>();
             string path = "../../../test_model.json";
@@ -23,12 +23,11 @@ namespace WKInterpreter.Tests
             foreach (KeyValuePair<string, JToken> cases in model)
             {
                 JEnumerable<JToken> tests = cases.Value.Children();
-                foreach (var test in tests)
+                foreach (JToken test in tests)
                 {
-
+                    TestCase tCase = new TestCase(test);
+                    TestData.Add(tCase);
                 }
-                //if (test.Type == GeometryType.POINT)
-                TestData.Add(new TestCase());
             }
         }
 
@@ -37,6 +36,22 @@ namespace WKInterpreter.Tests
         public void ParseWkt(TestCase testCase)
         {
             Geometry result = Geometry.Deserialize(testCase.wkt);
+
+            Assert.True(result.IsValid);
+        }
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void ParseWkb_big(TestCase testCase)
+        {
+            Geometry result = Geometry.Deserialize(testCase.wkb_big);
+
+            Assert.True(result.IsValid);
+        }
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void ParseWkb_little(TestCase testCase)
+        {
+            Geometry result = Geometry.Deserialize(testCase.wkb_little);
 
             Assert.True(result.IsValid);
         }

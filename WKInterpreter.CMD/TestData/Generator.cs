@@ -18,8 +18,9 @@ namespace WKInterpreter.CMD.TestData
             GeometryType[] geometryTypes = Enum.GetValues(typeof(GeometryType)).Cast<GeometryType>().ToArray();
             DimensionType[] dimensions = Enum.GetValues(typeof(DimensionType)).Cast<DimensionType>().ToArray();
 
-            foreach (GeometryType geometry in geometryTypes)
+            //foreach (GeometryType geometry in geometryTypes)
             {
+                GeometryType geometry = GeometryType.POINT;
                 foreach (DimensionType dimension in dimensions)
                 {
                     Test empty = createEmpty(geometry, dimension);
@@ -35,18 +36,23 @@ namespace WKInterpreter.CMD.TestData
 
             return model;
         }
-        private static Test createEmpty(GeometryType geometry, DimensionType dimension)
+        static Test createEmpty(GeometryType geometry, DimensionType dimension)
         {
             Test test = new Test();
             test.Type = geometry;
             test.Dimension = dimension;
 
+            //Array to store the byte form
+            BinaryArray arr = new BinaryArray();
+            arr.AddBytes(intToBytes((int)geometry + (int)dimension));
+
             test.wkt = geometry.ToString() + " " + dimension.WktEncode() + " EMPTY";
             test.ewkt = "SRID=4326;" + geometry.ToString() + " " + dimension.WktEncode() + " EMPTY";
 
+            test.Validation = Activator.CreateInstance(geometry.GetEquivalentType()) as Geometry;
             return test;
         }
-        private static Test createTest(GeometryType geometry, DimensionType dimension)
+        static Test createTest(GeometryType geometry, DimensionType dimension)
         {
             switch (geometry)
             {
@@ -111,27 +117,67 @@ namespace WKInterpreter.CMD.TestData
             return null;
         }
         //**************************************************************************************
-        private static Test createPointTest(DimensionType dimension)
+        static Test createPointTest(DimensionType dimension)
         {
+            double?[] values = new double?[] { null, null, null, null };
             Test test = new Test();
             test.Type = GeometryType.POINT;
             test.Dimension = dimension;
 
+            //Array to store the byte form
+            BinaryArray arr = new BinaryArray();
+            //arr.BigEndian.Add(endianToByte(EndianType.BIG_ENDIAN));
+            //arr.LittleEndian.Add(endianToByte(EndianType.LITTLE_ENDIAN));
+            arr.AddBytes(intToBytes((int)GeometryType.POINT + (int)dimension));          
+            //**********************************************************
+            #region Set wkt case
             test.wkt = "POINT " + dimension.WktEncode() + "(";
-
             for (int i = 0; i < dimension.GetDimensionValue(); i++)
             {
-                int value = m_random.Next();
+                double value = m_random.NextDouble();
+                values[i] = value;
+                arr.AddBytes(doubleToBytes(value));
                 test.wkt += value;
 
                 if (i < dimension.GetDimensionValue() - 1)
                     test.wkt += " ";
             }
             test.wkt += ")";
-
-            test.Validation = new Point();
+            #endregion
+            //**********************************************************
+            test.wkb_big = arr.BigEndian.ToArray();
+            test.wkb_little = arr.LittleEndian.ToArray();
+            //**********************************************************
+            //Set the validation element
+            if (dimension == DimensionType.XYM)
+            {
+                test.Validation = new Point(values[0], values[1], null, values[2]);
+            }
+            else
+            {
+                test.Validation = new Point(values[0], values[1], values[2], values[3]);
+            }
 
             return test;
+        }
+        //**************************************************************************************
+        static byte endianToByte(EndianType value)
+        {
+            return Convert.ToByte(value);
+        }
+        static byte[] doubleToBytes(double value) 
+        {
+            if (BitConverter.IsLittleEndian)
+                return BitConverter.GetBytes(value).Reverse().ToArray();
+            else
+                return BitConverter.GetBytes(value);
+        }
+        static byte[] intToBytes(int value)
+        {
+            if (BitConverter.IsLittleEndian)
+                return BitConverter.GetBytes(value).Reverse().ToArray();
+            else
+                return BitConverter.GetBytes(value);
         }
     }
 }
