@@ -7,8 +7,8 @@ Based on the Wikipedia page : https://en.wikipedia.org/wiki/Well-known_text_repr
 
 | Geometry | WKT | WKB | Passing |
 | -------- | --- | --- | ------- | 
-|Point|True|True|False|
-|LineString|False|False|False|
+|Point|True|True|True|
+|LineString|True|True|True|
 |Polygon|False|False|False|
 |MultiPoint|False|False|False|
 |MultiLineString|False|False|False|

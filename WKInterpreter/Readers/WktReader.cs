@@ -51,8 +51,11 @@ namespace WKInterpreter.Readers
                 case GeometryType.LINESTRING:
                     return ReadLineString(dimension);
                 case GeometryType.POLYGON:
+                    return ReadPolygon(dimension);
                 case GeometryType.MULTIPOINT:
+                    return ReadMultiPoint(dimension);
                 case GeometryType.MULTILINESTRING:
+                    return ReadMultiLineString(dimension);
                 case GeometryType.MULTIPOLYGON:
                 case GeometryType.GEOMETRYCOLLECTION:
                 case GeometryType.CIRCULARSTRING:
@@ -187,25 +190,6 @@ namespace WKInterpreter.Readers
 
             return pt;
         }
-        public Point ReadCoordinate(string coord)
-        {
-            string[] svalues = coord.Split(' ');
-            double?[] dvalues = new double?[] { null, null, null, null };
-
-            for (int i = 0; i < svalues.Length; i++)
-            {
-                if (double.TryParse(svalues[i], out double value))
-                {
-                    dvalues[i] = value;
-                }
-                else
-                {
-                    throw new Exception("Error parsing a numeric value near the index " + m_currIndex);
-                }
-            }
-
-            return new Point(dvalues[0], dvalues[1], dvalues[2], dvalues[3]);
-        }
         public Point ReadPoint(DimensionType dimension)
         {
             //Get the string data information of the coordinate
@@ -221,7 +205,7 @@ namespace WKInterpreter.Readers
 
             foreach (string pt in linePoints)
             {
-                line.AddPoint(ReadCoordinate(dimension, pt));
+                line.AddGeometry(ReadCoordinate(dimension, pt));
             }
 
             return line;
@@ -232,11 +216,32 @@ namespace WKInterpreter.Readers
         }
         public MultiPoint ReadMultiPoint(DimensionType dimension)
         {
-            throw new NotImplementedException();
+            string[] points = readGroup('(', ')', ref m_currIndex).Split(',');
+            MultiPoint multiPoint = new MultiPoint();
+
+            foreach (string pt in points)
+            {
+                multiPoint.AddGeometry(ReadCoordinate(dimension, pt));
+            }
+
+            return multiPoint;
         }
         public MultiLineString ReadMultiLineString(DimensionType dimension)
         {
-            throw new NotImplementedException();
+            string[] lines = readGroup('(', ')', ref m_currIndex).Split(',');
+            MultiLineString multiLine = new MultiLineString();
+
+            foreach (string line in lines)
+            {
+                LineString tmpLine = new LineString();
+                string[] points = line.Replace("(", "").Replace(")", "").Split(',');
+                foreach (string point in points)
+                {
+                    tmpLine.AddGeometry(ReadCoordinate(dimension, point));
+                }
+                multiLine.AddGeometry(tmpLine);
+            }
+            return multiLine;
         }
         public bool IsEmpty()
         {

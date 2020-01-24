@@ -142,7 +142,37 @@
         </member>
         <member name="F:WKInterpreter.GeometryType.POINT">
             <summary>
-            Geometric point.
+            Point.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.LINESTRING">
+            <summary>
+            Polyline.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.POLYGON">
+            <summary>
+            Polygon.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.MULTIPOINT">
+            <summary>
+            Collection of points.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.MULTILINESTRING">
+            <summary>
+            Collection fo polylines.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.MULTIPOLYGON">
+            <summary>
+            Collection of polygons.
+            </summary>
+        </member>
+        <member name="F:WKInterpreter.GeometryType.GEOMETRYCOLLECTION">
+            <summary>
+            Collection of geometric objects.
             </summary>
         </member>
         <member name="F:WKInterpreter.GeometryType.BREPSOLID">
@@ -169,12 +199,6 @@
             <summary>
             LineString validation.
             </summary>
-        </member>
-        <member name="M:WKInterpreter.LineString.AddPoint(WKInterpreter.Point)">
-            <summary>
-            
-            </summary>
-            <param name="point"></param>
         </member>
         <member name="M:WKInterpreter.LineString.IsClosed">
             <summary>
@@ -272,6 +296,33 @@
             </summary>
             <param name="other"></param>
             <param name="tolerance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Point.DistanceFrom(WKInterpreter.Point)">
+            <summary>
+            Returns the distance from another point.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Point.Equals(System.Object)">
+            <summary>
+            Equality between this object and another
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Point.Equals(WKInterpreter.Point)">
+            <summary>
+            Equality between this object and another
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Point.GetHashCode">
+            <summary>
+            HashCode.
+            </summary>
             <returns></returns>
         </member>
         <member name="M:WKInterpreter.Readers.IReader.Read">

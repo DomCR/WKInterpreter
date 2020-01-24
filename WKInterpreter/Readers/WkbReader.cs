@@ -134,7 +134,7 @@ namespace WKInterpreter.Readers
 
             for (int i = 0; i < nPoints; i++)
             {
-                line.AddPoint(ReadPoint(dimension));
+                line.AddGeometry(ReadPoint(dimension));
             }
 
             return line;

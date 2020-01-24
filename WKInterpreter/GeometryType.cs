@@ -12,14 +12,32 @@ namespace WKInterpreter
         /// </summary>
         GEOMETRY           = 0x00,
         /// <summary>
-        /// Geometric point.
+        /// Point.
         /// </summary>
         POINT              = 0x01,       
+        /// <summary>
+        /// Polyline.
+        /// </summary>
         LINESTRING         = 0x02,
+        /// <summary>
+        /// Polygon.
+        /// </summary>
         POLYGON            = 0x03,
+        /// <summary>
+        /// Collection of points.
+        /// </summary>
         MULTIPOINT         = 0x04,
+        /// <summary>
+        /// Collection fo polylines.
+        /// </summary>
         MULTILINESTRING    = 0x05,
+        /// <summary>
+        /// Collection of polygons.
+        /// </summary>
         MULTIPOLYGON       = 0x06,
+        /// <summary>
+        /// Collection of geometric objects.
+        /// </summary>
         GEOMETRYCOLLECTION = 0x07,
         CIRCULARSTRING     = 0x08,
         COMPOUNDCURVE      = 0x09,

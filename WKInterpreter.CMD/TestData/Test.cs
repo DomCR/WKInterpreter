@@ -27,11 +27,6 @@ namespace WKInterpreter.CMD.TestData
         {
 
         }
-        public Test(GeometryType geometry, DimensionType dimension)
-        {
-
-        }
-
         public void CreateEmpty(GeometryType geometry, DimensionType dimension)
         {
             this.Type = geometry;
@@ -99,6 +94,54 @@ namespace WKInterpreter.CMD.TestData
             this.wkb_big = m_arr.BigEndian.ToArray();
             this.wkb_little = m_arr.LittleEndian.ToArray();
         }
+        public void CreateMultiLineString(DimensionType dimension, bool negative)
+        {
+            this.Type = GeometryType.MULTILINESTRING;
+            this.Dimension = dimension;
+            m_arr = new BinaryArray();
+            m_arr.AddBytes(intToBytes((int)this.Type + (int)dimension));
+
+            this.wkt = GeometryType.MULTILINESTRING.ToString() + " " + dimension.WktEncode() + "(";
+            this.ewkt = "SRID=4326;" + this.Type.ToString() + " " + dimension.WktEncode() + "(";
+            this.Validation = new MultiLineString();
+
+            int nlines = m_random.Next(1, 5);
+            m_arr.AddBytes(intToBytes(nlines));
+
+            for (int i = 0; i < nlines; i++)
+            {
+                this.wkt += "(";
+                this.ewkt += "(";
+                LineString tmpls = new LineString();
+
+                int npoints = m_random.Next(2, 4);
+                m_arr.AddBytes(intToBytes(npoints));
+                for (int j = 0; j < npoints; j++)
+                {
+                    addCoordinate(dimension, out Point pt, negative);
+                    tmpls.AddGeometry(pt);
+
+                    if (j < npoints - 1)
+                    {
+                        this.wkt += ",";
+                        this.ewkt += ",";
+                    }
+                }
+
+                (this.Validation as MultiLineString).AddGeometry(tmpls);
+
+                if (i < npoints - 1)
+                {
+                    this.wkt += "),";
+                    this.ewkt += "),";
+                }
+            }
+
+            this.wkt += "))";
+            this.ewkt += "))";
+            this.wkb_big = m_arr.BigEndian.ToArray();
+            this.wkb_little = m_arr.LittleEndian.ToArray();
+        }
         //**************************************************************************************
         void addCoordinate(DimensionType dimension, out Point pt, bool negative)
         {
@@ -142,14 +185,14 @@ namespace WKInterpreter.CMD.TestData
         {
             return Convert.ToByte(value);
         }
-        byte[] doubleToBytes(double value)
+        byte[] intToBytes(int value)
         {
             if (BitConverter.IsLittleEndian)
                 return BitConverter.GetBytes(value).Reverse().ToArray();
             else
                 return BitConverter.GetBytes(value);
         }
-        byte[] intToBytes(int value)
+        byte[] doubleToBytes(double value)
         {
             if (BitConverter.IsLittleEndian)
                 return BitConverter.GetBytes(value).Reverse().ToArray();

@@ -6,78 +6,10 @@ using WKInterpreter.Exceptions;
 
 namespace WKInterpreter
 {
-
-    #region Old Code
-    //public class LineString : Geometry
-    //{
-    //    /// <summary>
-    //    /// Points forming the line.
-    //    /// </summary>
-    //    public List<Point> Points { get; private set; }
-    //    /// <summary>
-    //    /// Geometry type of the object, LINESTRING.
-    //    /// </summary>
-    //    public override GeometryType GeometryType { get { return GeometryType.LINESTRING; } }
-    //    public override DimensionType Dimension
-    //    {
-    //        get
-    //        {
-    //            if (Points.Count > 0)
-    //                return Points.FirstOrDefault().Dimension;
-    //            else
-    //                //If there are no points return a default
-    //                return DimensionType.XY;
-    //        }
-    //    }
-    //    public override bool IsEmpty { get { return !Points.Any(); } }
-    //    public override bool IsValid
-    //    {
-    //        get
-    //        {
-    //            //Different dimension points
-    //            if (Points.Select(o => o.Dimension).Distinct().Count() > 1)
-    //                return false;
-
-    //            //Check the validation of all the points
-    //            foreach (Point point in Points)
-    //            {
-    //                if (!point.IsValid)
-    //                    return false;
-    //            }
-
-    //            return true;
-    //        }
-    //    }
-
-    //    public LineString()
-    //    {
-    //        Points = new List<Point>();
-    //    }
-    //    public LineString(IEnumerable<Point> points)
-    //    {
-    //        Points = new List<Point>(points);
-    //    }
-    //    //*********************************************************************************
-    //    public void AddPoint(Point point)
-    //    {
-    //        if (point.Dimension != Dimension)
-    //            throw new InvalidDimensionException();
-    //        if (point.IsEmpty)
-    //            throw new ArgumentException("Cannot add an empty point.");
-
-    //        Points.Add(point);
-    //    }
-    //    public void ChangeDimension(DimensionType dimension)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //} 
-    #endregion
-
     /// <summary>
     /// LineString class, implements a geometry collection of points.
     /// </summary>
-    public class LineString : GeometryCollection<Point>
+    public class LineString : GeometryCollection<Point>, IEquatable<LineString>
     {
         public List<Point> Points { get { return m_geometries; } }
         /// <summary>
@@ -102,21 +34,14 @@ namespace WKInterpreter
             }
         }
         //*********************************************************************************
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="point"></param>
-        public void AddPoint(Point point)
-        {
-            if (!this.IsEmpty && point.Dimension != Dimension)
-                throw new InvalidDimensionException();
-            if (point.IsEmpty)
-                throw new ArgumentException("Cannot add an empty point.");
-
-            m_geometries.Add(point);
-        }
         public void ChangeDimension(DimensionType dimension)
         {
+            if (this.IsEmpty)
+                throw new NotSupportedException("The LineString cannot be empty to change the dimension.");
+
+            //Change the dimension of all the points int the element
+            //Should put a default value?
+
             throw new NotImplementedException();
         }
         /// <summary>
@@ -132,6 +57,26 @@ namespace WKInterpreter
                 return false;
 
             return m_geometries.FirstOrDefault().IsNear(m_geometries.Last());
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            if (!(other is LineString))
+                return false;
+
+            return Equals((LineString)other);
+        }
+
+        public bool Equals(LineString other)
+        {
+            return Points.SequenceEqual(other.Points);
+        }
+
+        public override int GetHashCode()
+        {
+            return new { Points }.GetHashCode();
         }
     }
 }

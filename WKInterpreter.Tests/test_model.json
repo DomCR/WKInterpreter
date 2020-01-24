@@ -1963,6 +1963,1286 @@
         "Endian": 0,
         "Srid": null
       }
+    },
+    {
+      "Id": "0024",
+      "Type": 5,
+      "Dimension": 0,
+      "wkt": "MULTILINESTRING  EMPTY",
+      "wkb_big": "AAAAAAU=",
+      "wkb_little": "AQUAAAA=",
+      "ewkt": "SRID=4326;MULTILINESTRING  EMPTY",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [],
+        "GeometryType": 5,
+        "Dimension": 0,
+        "IsEmpty": true,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0025",
+      "Type": 5,
+      "Dimension": 0,
+      "wkt": "MULTILINESTRING ((0.7680226893946634 0.5581611914365372,0.2060331540210327 0.5588847946184151,0.9060270660119257 0.44217787331071584),(0.27370445768987034 0.29190628476995334,0.4673147003479836 0.6326590728166788,0.4695118784296847 0.9821512531406019),(0.8623701538249712 0.9953470812157481,0.6771811492169189 0.3145917930242567))",
+      "wkb_big": "AAAAAAUAAAADAAAAAz/ok6RRsSdJP+HcdNvjuOo/yl9LXTS+lz/h4mJdY8TFP+z+LHk5/Fk/3EykbDiZSQAAAAM/0YRfs6MIvz/SrpeypV0vP93oe+q70Pg/5D6+PWh9fD/eDHuMvBj3P+9tyHb+25EAAAACP+uYiUr3MRM/79niHz+zxD/lq3fNK1bwP9QiRZ2oRIs=",
+      "wkb_little": "AQUAAAADAAAAAwAAAEknsVGkk+g/6rjj23Tc4T+XvjRdS1/KP8XEY11i4uE/Wfw5eSz+7D9JmThspEzcPwMAAAC/CKOzX4TRPy9dpbKXrtI/+NC76nvo3T98fWg9vj7kP/cYvIx7DN4/kdv+dsht7z8CAAAAEzH3SomY6z/Esz8f4tnvP/BWK813q+U/i0SonUUi1D8=",
+      "ewkt": "SRID=4326;MULTILINESTRING ((0.7680226893946634 0.5581611914365372,0.2060331540210327 0.5588847946184151,0.9060270660119257 0.44217787331071584),(0.27370445768987034 0.29190628476995334,0.4673147003479836 0.6326590728166788,0.4695118784296847 0.9821512531406019),(0.8623701538249712 0.9953470812157481,0.6771811492169189 0.3145917930242567))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": 0.7680226893946634,
+                "Y": 0.5581611914365372,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.2060331540210327,
+                "Y": 0.5588847946184151,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.9060270660119257,
+                "Y": 0.44217787331071584,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 0,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.27370445768987034,
+                "Y": 0.29190628476995334,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.4673147003479836,
+                "Y": 0.6326590728166788,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.4695118784296847,
+                "Y": 0.9821512531406019,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 0,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.8623701538249712,
+                "Y": 0.9953470812157481,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.6771811492169189,
+                "Y": 0.3145917930242567,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 0,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 0,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0026",
+      "Type": 5,
+      "Dimension": 0,
+      "wkt": "MULTILINESTRING ((-0.7680226893946634 -0.5581611914365372,-0.2060331540210327 -0.5588847946184151,-0.9060270660119257 -0.44217787331071584),(-0.27370445768987034 -0.29190628476995334,-0.4673147003479836 -0.6326590728166788,-0.4695118784296847 -0.9821512531406019),(-0.8623701538249712 -0.9953470812157481,-0.6771811492169189 -0.3145917930242567))",
+      "wkb_big": "AAAAAAUAAAADAAAAA7/ok6RRsSdJv+HcdNvjuOq/yl9LXTS+l7/h4mJdY8TFv+z+LHk5/Fm/3EykbDiZSQAAAAO/0YRfs6MIv7/SrpeypV0vv93oe+q70Pi/5D6+PWh9fL/eDHuMvBj3v+9tyHb+25EAAAACv+uYiUr3MRO/79niHz+zxL/lq3fNK1bwv9QiRZ2oRIs=",
+      "wkb_little": "AQUAAAADAAAAAwAAAEknsVGkk+i/6rjj23Tc4b+XvjRdS1/Kv8XEY11i4uG/Wfw5eSz+7L9JmThspEzcvwMAAAC/CKOzX4TRvy9dpbKXrtK/+NC76nvo3b98fWg9vj7kv/cYvIx7DN6/kdv+dsht778CAAAAEzH3SomY67/Esz8f4tnvv/BWK813q+W/i0SonUUi1L8=",
+      "ewkt": "SRID=4326;MULTILINESTRING ((-0.7680226893946634 -0.5581611914365372,-0.2060331540210327 -0.5588847946184151,-0.9060270660119257 -0.44217787331071584),(-0.27370445768987034 -0.29190628476995334,-0.4673147003479836 -0.6326590728166788,-0.4695118784296847 -0.9821512531406019),(-0.8623701538249712 -0.9953470812157481,-0.6771811492169189 -0.3145917930242567))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": -0.7680226893946634,
+                "Y": -0.5581611914365372,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.2060331540210327,
+                "Y": -0.5588847946184151,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.9060270660119257,
+                "Y": -0.44217787331071584,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 0,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.27370445768987034,
+                "Y": -0.29190628476995334,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.4673147003479836,
+                "Y": -0.6326590728166788,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.4695118784296847,
+                "Y": -0.9821512531406019,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 0,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.8623701538249712,
+                "Y": -0.9953470812157481,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.6771811492169189,
+                "Y": -0.3145917930242567,
+                "Z": null,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 0,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 0,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 0,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0027",
+      "Type": 5,
+      "Dimension": 1000,
+      "wkt": "MULTILINESTRING Z EMPTY",
+      "wkb_big": "AAAAA+0=",
+      "wkb_little": "Ae0DAAA=",
+      "ewkt": "SRID=4326;MULTILINESTRING Z EMPTY",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [],
+        "GeometryType": 5,
+        "Dimension": 0,
+        "IsEmpty": true,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0028",
+      "Type": 5,
+      "Dimension": 1000,
+      "wkt": "MULTILINESTRING Z((0.7680226893946634 0.5581611914365372 0.2060331540210327,0.5588847946184151 0.9060270660119257 0.44217787331071584,0.9775497531413798 0.27370445768987034 0.29190628476995334),(0.6326590728166788 0.4695118784296847 0.9821512531406019,0.030366990729406004 0.8623701538249712 0.9953470812157481(0.3145917930242567 0.8169079086822029 0.8480517830923441,0.9919021753556571 0.032625198379450104 0.6999419837724147,0.5262841426424143 0.934018658909024 0.6876202824933548))",
+      "wkb_big": "AAAAA+0AAAADAAAAAz/ok6RRsSdJP+HcdNvjuOo/yl9LXTS+lz/h4mJdY8TFP+z+LHk5/Fk/3EykbDiZST/vSBZrfpAtP9GEX7OjCL8/0q6XsqVdLwAAAAI/5D6+PWh9fD/eDHuMvBj3P+9tyHb+25E/nxiGQD4xDD/rmIlK9zETP+/Z4h8/s8QAAAADP9QiRZ2oRIs/6iQcDfRIOD/rIz1+NkZ7P++9qaF/e1M/oLRAACFogD/mZey7LMvZP+DXUdehrqQ/7eN7GTvG9j/mAPxALAH4",
+      "wkb_little": "Ae0DAAADAAAAAwAAAEknsVGkk+g/6rjj23Tc4T+XvjRdS1/KP8XEY11i4uE/Wfw5eSz+7D9JmThspEzcPy2QfmsWSO8/vwijs1+E0T8vXaWyl67SPwIAAAB8fWg9vj7kP/cYvIx7DN4/kdv+dsht7z8MMT5AhhifPxMx90qJmOs/xLM/H+LZ7z8DAAAAi0SonUUi1D84SPQNHCTqP3tGNn49I+s/U3t/oam97z+AaCEAQLSgP9nLLLvsZeY/pK6h11HX4D/2xjsZe+PtP/gBLED8AOY/",
+      "ewkt": "SRID=4326;MULTILINESTRING Z((0.7680226893946634 0.5581611914365372 0.2060331540210327,0.5588847946184151 0.9060270660119257 0.44217787331071584,0.9775497531413798 0.27370445768987034 0.29190628476995334),(0.6326590728166788 0.4695118784296847 0.9821512531406019,0.030366990729406004 0.8623701538249712 0.9953470812157481(0.3145917930242567 0.8169079086822029 0.8480517830923441,0.9919021753556571 0.032625198379450104 0.6999419837724147,0.5262841426424143 0.934018658909024 0.6876202824933548))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": 0.7680226893946634,
+                "Y": 0.5581611914365372,
+                "Z": 0.2060331540210327,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.5588847946184151,
+                "Y": 0.9060270660119257,
+                "Z": 0.44217787331071584,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.9775497531413798,
+                "Y": 0.27370445768987034,
+                "Z": 0.29190628476995334,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 1000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.6326590728166788,
+                "Y": 0.4695118784296847,
+                "Z": 0.9821512531406019,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.030366990729406004,
+                "Y": 0.8623701538249712,
+                "Z": 0.9953470812157481,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 1000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.3145917930242567,
+                "Y": 0.8169079086822029,
+                "Z": 0.8480517830923441,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.9919021753556571,
+                "Y": 0.032625198379450104,
+                "Z": 0.6999419837724147,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.5262841426424143,
+                "Y": 0.934018658909024,
+                "Z": 0.6876202824933548,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 1000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 1000,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0029",
+      "Type": 5,
+      "Dimension": 1000,
+      "wkt": "MULTILINESTRING Z((-0.7680226893946634 -0.5581611914365372 -0.2060331540210327,-0.5588847946184151 -0.9060270660119257 -0.44217787331071584,-0.9775497531413798 -0.27370445768987034 -0.29190628476995334),(-0.6326590728166788 -0.4695118784296847 -0.9821512531406019,-0.030366990729406004 -0.8623701538249712 -0.9953470812157481(-0.3145917930242567 -0.8169079086822029 -0.8480517830923441,-0.9919021753556571 -0.032625198379450104 -0.6999419837724147,-0.5262841426424143 -0.934018658909024 -0.6876202824933548))",
+      "wkb_big": "AAAAA+0AAAADAAAAA7/ok6RRsSdJv+HcdNvjuOq/yl9LXTS+l7/h4mJdY8TFv+z+LHk5/Fm/3EykbDiZSb/vSBZrfpAtv9GEX7OjCL+/0q6XsqVdLwAAAAK/5D6+PWh9fL/eDHuMvBj3v+9tyHb+25G/nxiGQD4xDL/rmIlK9zETv+/Z4h8/s8QAAAADv9QiRZ2oRIu/6iQcDfRIOL/rIz1+NkZ7v++9qaF/e1O/oLRAACFogL/mZey7LMvZv+DXUdehrqS/7eN7GTvG9r/mAPxALAH4",
+      "wkb_little": "Ae0DAAADAAAAAwAAAEknsVGkk+i/6rjj23Tc4b+XvjRdS1/Kv8XEY11i4uG/Wfw5eSz+7L9JmThspEzcvy2QfmsWSO+/vwijs1+E0b8vXaWyl67SvwIAAAB8fWg9vj7kv/cYvIx7DN6/kdv+dsht778MMT5AhhifvxMx90qJmOu/xLM/H+LZ778DAAAAi0SonUUi1L84SPQNHCTqv3tGNn49I+u/U3t/oam977+AaCEAQLSgv9nLLLvsZea/pK6h11HX4L/2xjsZe+Ptv/gBLED8AOa/",
+      "ewkt": "SRID=4326;MULTILINESTRING Z((-0.7680226893946634 -0.5581611914365372 -0.2060331540210327,-0.5588847946184151 -0.9060270660119257 -0.44217787331071584,-0.9775497531413798 -0.27370445768987034 -0.29190628476995334),(-0.6326590728166788 -0.4695118784296847 -0.9821512531406019,-0.030366990729406004 -0.8623701538249712 -0.9953470812157481(-0.3145917930242567 -0.8169079086822029 -0.8480517830923441,-0.9919021753556571 -0.032625198379450104 -0.6999419837724147,-0.5262841426424143 -0.934018658909024 -0.6876202824933548))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": -0.7680226893946634,
+                "Y": -0.5581611914365372,
+                "Z": -0.2060331540210327,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.5588847946184151,
+                "Y": -0.9060270660119257,
+                "Z": -0.44217787331071584,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.9775497531413798,
+                "Y": -0.27370445768987034,
+                "Z": -0.29190628476995334,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 1000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.6326590728166788,
+                "Y": -0.4695118784296847,
+                "Z": -0.9821512531406019,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.030366990729406004,
+                "Y": -0.8623701538249712,
+                "Z": -0.9953470812157481,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 1000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.3145917930242567,
+                "Y": -0.8169079086822029,
+                "Z": -0.8480517830923441,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.9919021753556571,
+                "Y": -0.032625198379450104,
+                "Z": -0.6999419837724147,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.5262841426424143,
+                "Y": -0.934018658909024,
+                "Z": -0.6876202824933548,
+                "M": null,
+                "GeometryType": 1,
+                "Dimension": 1000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 1000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 1000,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0030",
+      "Type": 5,
+      "Dimension": 2000,
+      "wkt": "MULTILINESTRING M EMPTY",
+      "wkb_big": "AAAAB9U=",
+      "wkb_little": "AdUHAAA=",
+      "ewkt": "SRID=4326;MULTILINESTRING M EMPTY",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [],
+        "GeometryType": 5,
+        "Dimension": 0,
+        "IsEmpty": true,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0031",
+      "Type": 5,
+      "Dimension": 2000,
+      "wkt": "MULTILINESTRING M((0.7680226893946634 0.5581611914365372 0.2060331540210327,0.5588847946184151 0.9060270660119257 0.44217787331071584,0.9775497531413798 0.27370445768987034 0.29190628476995334),(0.6326590728166788 0.4695118784296847 0.9821512531406019,0.030366990729406004 0.8623701538249712 0.9953470812157481(0.3145917930242567 0.8169079086822029 0.8480517830923441,0.9919021753556571 0.032625198379450104 0.6999419837724147,0.5262841426424143 0.934018658909024 0.6876202824933548))",
+      "wkb_big": "AAAAB9UAAAADAAAAAz/ok6RRsSdJP+HcdNvjuOo/yl9LXTS+lz/h4mJdY8TFP+z+LHk5/Fk/3EykbDiZST/vSBZrfpAtP9GEX7OjCL8/0q6XsqVdLwAAAAI/5D6+PWh9fD/eDHuMvBj3P+9tyHb+25E/nxiGQD4xDD/rmIlK9zETP+/Z4h8/s8QAAAADP9QiRZ2oRIs/6iQcDfRIOD/rIz1+NkZ7P++9qaF/e1M/oLRAACFogD/mZey7LMvZP+DXUdehrqQ/7eN7GTvG9j/mAPxALAH4",
+      "wkb_little": "AdUHAAADAAAAAwAAAEknsVGkk+g/6rjj23Tc4T+XvjRdS1/KP8XEY11i4uE/Wfw5eSz+7D9JmThspEzcPy2QfmsWSO8/vwijs1+E0T8vXaWyl67SPwIAAAB8fWg9vj7kP/cYvIx7DN4/kdv+dsht7z8MMT5AhhifPxMx90qJmOs/xLM/H+LZ7z8DAAAAi0SonUUi1D84SPQNHCTqP3tGNn49I+s/U3t/oam97z+AaCEAQLSgP9nLLLvsZeY/pK6h11HX4D/2xjsZe+PtP/gBLED8AOY/",
+      "ewkt": "SRID=4326;MULTILINESTRING M((0.7680226893946634 0.5581611914365372 0.2060331540210327,0.5588847946184151 0.9060270660119257 0.44217787331071584,0.9775497531413798 0.27370445768987034 0.29190628476995334),(0.6326590728166788 0.4695118784296847 0.9821512531406019,0.030366990729406004 0.8623701538249712 0.9953470812157481(0.3145917930242567 0.8169079086822029 0.8480517830923441,0.9919021753556571 0.032625198379450104 0.6999419837724147,0.5262841426424143 0.934018658909024 0.6876202824933548))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": 0.7680226893946634,
+                "Y": 0.5581611914365372,
+                "Z": null,
+                "M": 0.2060331540210327,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.5588847946184151,
+                "Y": 0.9060270660119257,
+                "Z": null,
+                "M": 0.44217787331071584,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.9775497531413798,
+                "Y": 0.27370445768987034,
+                "Z": null,
+                "M": 0.29190628476995334,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 2000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.6326590728166788,
+                "Y": 0.4695118784296847,
+                "Z": null,
+                "M": 0.9821512531406019,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.030366990729406004,
+                "Y": 0.8623701538249712,
+                "Z": null,
+                "M": 0.9953470812157481,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 2000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.3145917930242567,
+                "Y": 0.8169079086822029,
+                "Z": null,
+                "M": 0.8480517830923441,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.9919021753556571,
+                "Y": 0.032625198379450104,
+                "Z": null,
+                "M": 0.6999419837724147,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.5262841426424143,
+                "Y": 0.934018658909024,
+                "Z": null,
+                "M": 0.6876202824933548,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 2000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 2000,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0032",
+      "Type": 5,
+      "Dimension": 2000,
+      "wkt": "MULTILINESTRING M((-0.7680226893946634 -0.5581611914365372 -0.2060331540210327,-0.5588847946184151 -0.9060270660119257 -0.44217787331071584,-0.9775497531413798 -0.27370445768987034 -0.29190628476995334),(-0.6326590728166788 -0.4695118784296847 -0.9821512531406019,-0.030366990729406004 -0.8623701538249712 -0.9953470812157481(-0.3145917930242567 -0.8169079086822029 -0.8480517830923441,-0.9919021753556571 -0.032625198379450104 -0.6999419837724147,-0.5262841426424143 -0.934018658909024 -0.6876202824933548))",
+      "wkb_big": "AAAAB9UAAAADAAAAA7/ok6RRsSdJv+HcdNvjuOq/yl9LXTS+l7/h4mJdY8TFv+z+LHk5/Fm/3EykbDiZSb/vSBZrfpAtv9GEX7OjCL+/0q6XsqVdLwAAAAK/5D6+PWh9fL/eDHuMvBj3v+9tyHb+25G/nxiGQD4xDL/rmIlK9zETv+/Z4h8/s8QAAAADv9QiRZ2oRIu/6iQcDfRIOL/rIz1+NkZ7v++9qaF/e1O/oLRAACFogL/mZey7LMvZv+DXUdehrqS/7eN7GTvG9r/mAPxALAH4",
+      "wkb_little": "AdUHAAADAAAAAwAAAEknsVGkk+i/6rjj23Tc4b+XvjRdS1/Kv8XEY11i4uG/Wfw5eSz+7L9JmThspEzcvy2QfmsWSO+/vwijs1+E0b8vXaWyl67SvwIAAAB8fWg9vj7kv/cYvIx7DN6/kdv+dsht778MMT5AhhifvxMx90qJmOu/xLM/H+LZ778DAAAAi0SonUUi1L84SPQNHCTqv3tGNn49I+u/U3t/oam977+AaCEAQLSgv9nLLLvsZea/pK6h11HX4L/2xjsZe+Ptv/gBLED8AOa/",
+      "ewkt": "SRID=4326;MULTILINESTRING M((-0.7680226893946634 -0.5581611914365372 -0.2060331540210327,-0.5588847946184151 -0.9060270660119257 -0.44217787331071584,-0.9775497531413798 -0.27370445768987034 -0.29190628476995334),(-0.6326590728166788 -0.4695118784296847 -0.9821512531406019,-0.030366990729406004 -0.8623701538249712 -0.9953470812157481(-0.3145917930242567 -0.8169079086822029 -0.8480517830923441,-0.9919021753556571 -0.032625198379450104 -0.6999419837724147,-0.5262841426424143 -0.934018658909024 -0.6876202824933548))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": -0.7680226893946634,
+                "Y": -0.5581611914365372,
+                "Z": null,
+                "M": -0.2060331540210327,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.5588847946184151,
+                "Y": -0.9060270660119257,
+                "Z": null,
+                "M": -0.44217787331071584,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.9775497531413798,
+                "Y": -0.27370445768987034,
+                "Z": null,
+                "M": -0.29190628476995334,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 2000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.6326590728166788,
+                "Y": -0.4695118784296847,
+                "Z": null,
+                "M": -0.9821512531406019,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.030366990729406004,
+                "Y": -0.8623701538249712,
+                "Z": null,
+                "M": -0.9953470812157481,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 2000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.3145917930242567,
+                "Y": -0.8169079086822029,
+                "Z": null,
+                "M": -0.8480517830923441,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.9919021753556571,
+                "Y": -0.032625198379450104,
+                "Z": null,
+                "M": -0.6999419837724147,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.5262841426424143,
+                "Y": -0.934018658909024,
+                "Z": null,
+                "M": -0.6876202824933548,
+                "GeometryType": 1,
+                "Dimension": 2000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 2000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 2000,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0033",
+      "Type": 5,
+      "Dimension": 3000,
+      "wkt": "MULTILINESTRING ZM EMPTY",
+      "wkb_big": "AAAAC70=",
+      "wkb_little": "Ab0LAAA=",
+      "ewkt": "SRID=4326;MULTILINESTRING ZM EMPTY",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [],
+        "GeometryType": 5,
+        "Dimension": 0,
+        "IsEmpty": true,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0034",
+      "Type": 5,
+      "Dimension": 3000,
+      "wkt": "MULTILINESTRING ZM((0.7680226893946634 0.5581611914365372 0.2060331540210327 0.5588847946184151,0.9060270660119257 0.44217787331071584 0.9775497531413798 0.27370445768987034,0.29190628476995334 0.4673147003479836 0.6326590728166788 0.4695118784296847),(0.030366990729406004 0.8623701538249712 0.9953470812157481 0.6771811492169189,0.3145917930242567 0.8169079086822029 0.8480517830923441 0.9919021753556571,0.032625198379450104 0.6999419837724147 0.5262841426424143 0.934018658909024),(0.5468154342597422 0.081109949891041 0.18712457417842213 0.4533271852197718,0.2971718657282981 0.9885437791182398 0.6426974728902325 0.7629635882391425,0.03039429291635486 0.38100450689951165 0.3431418446559188 0.9574551656644117))",
+      "wkb_big": "AAAAC70AAAADAAAAAz/ok6RRsSdJP+HcdNvjuOo/yl9LXTS+lz/h4mJdY8TFP+z+LHk5/Fk/3EykbDiZST/vSBZrfpAtP9GEX7OjCL8/0q6XsqVdLz/d6Hvqu9D4P+Q+vj1ofXw/3gx7jLwY9wAAAAM/nxiGQD4xDD/rmIlK9zETP+/Z4h8/s8Q/5at3zStW8D/UIkWdqESLP+okHA30SDg/6yM9fjZGez/vvamhf3tTP6C0QAAhaIA/5mXsuyzL2T/g11HXoa6kP+3jexk7xvYAAAADP+F/gxTi/wY/tMOfJimHPj/H87KzL+dlP90DUAa6BqA/0wTdJSYJuj/voiaQP0RNP+SQ+kppIfU/6GoynXDUZT+fH654Pj9dP9hiYLowxME/1fYJNivsEj/uo3kD/Uby",
+      "wkb_little": "Ab0LAAADAAAAAwAAAEknsVGkk+g/6rjj23Tc4T+XvjRdS1/KP8XEY11i4uE/Wfw5eSz+7D9JmThspEzcPy2QfmsWSO8/vwijs1+E0T8vXaWyl67SP/jQu+p76N0/fH1oPb4+5D/3GLyMewzePwMAAAAMMT5AhhifPxMx90qJmOs/xLM/H+LZ7z/wVivNd6vlP4tEqJ1FItQ/OEj0DRwk6j97RjZ+PSPrP1N7f6Gpve8/gGghAEC0oD/Zyyy77GXmP6SuoddR1+A/9sY7GXvj7T8DAAAABv/iFIN/4T8+hykmn8O0P2XnL7Oy88c/oAa6BlAD3T+6CSYl3QTTP01EP5Amou8/9SFpSvqQ5D9l1HCdMmroP10/PniuH58/wcQwumBi2D8S7Cs2CfbVP/JG/QN5o+4/",
+      "ewkt": "SRID=4326;MULTILINESTRING ZM((0.7680226893946634 0.5581611914365372 0.2060331540210327 0.5588847946184151,0.9060270660119257 0.44217787331071584 0.9775497531413798 0.27370445768987034,0.29190628476995334 0.4673147003479836 0.6326590728166788 0.4695118784296847),(0.030366990729406004 0.8623701538249712 0.9953470812157481 0.6771811492169189,0.3145917930242567 0.8169079086822029 0.8480517830923441 0.9919021753556571,0.032625198379450104 0.6999419837724147 0.5262841426424143 0.934018658909024),(0.5468154342597422 0.081109949891041 0.18712457417842213 0.4533271852197718,0.2971718657282981 0.9885437791182398 0.6426974728902325 0.7629635882391425,0.03039429291635486 0.38100450689951165 0.3431418446559188 0.9574551656644117))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": 0.7680226893946634,
+                "Y": 0.5581611914365372,
+                "Z": 0.2060331540210327,
+                "M": 0.5588847946184151,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.9060270660119257,
+                "Y": 0.44217787331071584,
+                "Z": 0.9775497531413798,
+                "M": 0.27370445768987034,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.29190628476995334,
+                "Y": 0.4673147003479836,
+                "Z": 0.6326590728166788,
+                "M": 0.4695118784296847,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 3000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.030366990729406004,
+                "Y": 0.8623701538249712,
+                "Z": 0.9953470812157481,
+                "M": 0.6771811492169189,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.3145917930242567,
+                "Y": 0.8169079086822029,
+                "Z": 0.8480517830923441,
+                "M": 0.9919021753556571,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.032625198379450104,
+                "Y": 0.6999419837724147,
+                "Z": 0.5262841426424143,
+                "M": 0.934018658909024,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 3000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": 0.5468154342597422,
+                "Y": 0.081109949891041,
+                "Z": 0.18712457417842213,
+                "M": 0.4533271852197718,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.2971718657282981,
+                "Y": 0.9885437791182398,
+                "Z": 0.6426974728902325,
+                "M": 0.7629635882391425,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": 0.03039429291635486,
+                "Y": 0.38100450689951165,
+                "Z": 0.3431418446559188,
+                "M": 0.9574551656644117,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 3000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 3000,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
+    },
+    {
+      "Id": "0035",
+      "Type": 5,
+      "Dimension": 3000,
+      "wkt": "MULTILINESTRING ZM((-0.7680226893946634 -0.5581611914365372 -0.2060331540210327 -0.5588847946184151,-0.9060270660119257 -0.44217787331071584 -0.9775497531413798 -0.27370445768987034,-0.29190628476995334 -0.4673147003479836 -0.6326590728166788 -0.4695118784296847),(-0.030366990729406004 -0.8623701538249712 -0.9953470812157481 -0.6771811492169189,-0.3145917930242567 -0.8169079086822029 -0.8480517830923441 -0.9919021753556571,-0.032625198379450104 -0.6999419837724147 -0.5262841426424143 -0.934018658909024),(-0.5468154342597422 -0.081109949891041 -0.18712457417842213 -0.4533271852197718,-0.2971718657282981 -0.9885437791182398 -0.6426974728902325 -0.7629635882391425,-0.03039429291635486 -0.38100450689951165 -0.3431418446559188 -0.9574551656644117))",
+      "wkb_big": "AAAAC70AAAADAAAAA7/ok6RRsSdJv+HcdNvjuOq/yl9LXTS+l7/h4mJdY8TFv+z+LHk5/Fm/3EykbDiZSb/vSBZrfpAtv9GEX7OjCL+/0q6XsqVdL7/d6Hvqu9D4v+Q+vj1ofXy/3gx7jLwY9wAAAAO/nxiGQD4xDL/rmIlK9zETv+/Z4h8/s8S/5at3zStW8L/UIkWdqESLv+okHA30SDi/6yM9fjZGe7/vvamhf3tTv6C0QAAhaIC/5mXsuyzL2b/g11HXoa6kv+3jexk7xvYAAAADv+F/gxTi/wa/tMOfJimHPr/H87KzL+dlv90DUAa6BqC/0wTdJSYJur/voiaQP0RNv+SQ+kppIfW/6GoynXDUZb+fH654Pj9dv9hiYLowxMG/1fYJNivsEr/uo3kD/Uby",
+      "wkb_little": "Ab0LAAADAAAAAwAAAEknsVGkk+i/6rjj23Tc4b+XvjRdS1/Kv8XEY11i4uG/Wfw5eSz+7L9JmThspEzcvy2QfmsWSO+/vwijs1+E0b8vXaWyl67Sv/jQu+p76N2/fH1oPb4+5L/3GLyMewzevwMAAAAMMT5AhhifvxMx90qJmOu/xLM/H+LZ77/wVivNd6vlv4tEqJ1FItS/OEj0DRwk6r97RjZ+PSPrv1N7f6Gpve+/gGghAEC0oL/Zyyy77GXmv6SuoddR1+C/9sY7GXvj7b8DAAAABv/iFIN/4b8+hykmn8O0v2XnL7Oy88e/oAa6BlAD3b+6CSYl3QTTv01EP5Amou+/9SFpSvqQ5L9l1HCdMmrov10/PniuH5+/wcQwumBi2L8S7Cs2CfbVv/JG/QN5o+6/",
+      "ewkt": "SRID=4326;MULTILINESTRING ZM((-0.7680226893946634 -0.5581611914365372 -0.2060331540210327 -0.5588847946184151,-0.9060270660119257 -0.44217787331071584 -0.9775497531413798 -0.27370445768987034,-0.29190628476995334 -0.4673147003479836 -0.6326590728166788 -0.4695118784296847),(-0.030366990729406004 -0.8623701538249712 -0.9953470812157481 -0.6771811492169189,-0.3145917930242567 -0.8169079086822029 -0.8480517830923441 -0.9919021753556571,-0.032625198379450104 -0.6999419837724147 -0.5262841426424143 -0.934018658909024),(-0.5468154342597422 -0.081109949891041 -0.18712457417842213 -0.4533271852197718,-0.2971718657282981 -0.9885437791182398 -0.6426974728902325 -0.7629635882391425,-0.03039429291635486 -0.38100450689951165 -0.3431418446559188 -0.9574551656644117))",
+      "ewkb_big": null,
+      "ewkb_little": null,
+      "Validation": {
+        "Lines": [
+          {
+            "Points": [
+              {
+                "X": -0.7680226893946634,
+                "Y": -0.5581611914365372,
+                "Z": -0.2060331540210327,
+                "M": -0.5588847946184151,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.9060270660119257,
+                "Y": -0.44217787331071584,
+                "Z": -0.9775497531413798,
+                "M": -0.27370445768987034,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.29190628476995334,
+                "Y": -0.4673147003479836,
+                "Z": -0.6326590728166788,
+                "M": -0.4695118784296847,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 3000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.030366990729406004,
+                "Y": -0.8623701538249712,
+                "Z": -0.9953470812157481,
+                "M": -0.6771811492169189,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.3145917930242567,
+                "Y": -0.8169079086822029,
+                "Z": -0.8480517830923441,
+                "M": -0.9919021753556571,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.032625198379450104,
+                "Y": -0.6999419837724147,
+                "Z": -0.5262841426424143,
+                "M": -0.934018658909024,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 3000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          },
+          {
+            "Points": [
+              {
+                "X": -0.5468154342597422,
+                "Y": -0.081109949891041,
+                "Z": -0.18712457417842213,
+                "M": -0.4533271852197718,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.2971718657282981,
+                "Y": -0.9885437791182398,
+                "Z": -0.6426974728902325,
+                "M": -0.7629635882391425,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              },
+              {
+                "X": -0.03039429291635486,
+                "Y": -0.38100450689951165,
+                "Z": -0.3431418446559188,
+                "M": -0.9574551656644117,
+                "GeometryType": 1,
+                "Dimension": 3000,
+                "IsEmpty": false,
+                "IsValid": true,
+                "Endian": 0,
+                "Srid": null
+              }
+            ],
+            "GeometryType": 2,
+            "IsValid": true,
+            "Dimension": 3000,
+            "IsEmpty": false,
+            "Endian": 0,
+            "Srid": null
+          }
+        ],
+        "GeometryType": 5,
+        "Dimension": 3000,
+        "IsEmpty": false,
+        "IsValid": true,
+        "Endian": 0,
+        "Srid": null
+      }
     }
   ]
 }

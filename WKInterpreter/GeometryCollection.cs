@@ -68,12 +68,12 @@ namespace WKInterpreter
             m_geometries = new List<T>(geometries);
         }
         //*********************************************************************************
-        public virtual void Add(T element)
+        public virtual void AddGeometry(T element)
         {
-            if (element.Dimension != Dimension)
+            if (!this.IsEmpty && element.Dimension != Dimension)
                 throw new InvalidDimensionException();
             if (element.IsEmpty)
-                throw new ArgumentException("Cannot add an empty point.");
+                throw new ArgumentException("Cannot add an empty element.");
 
             m_geometries.Add(element);
         }
