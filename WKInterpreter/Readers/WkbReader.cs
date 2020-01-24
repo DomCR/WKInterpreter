@@ -105,6 +105,9 @@ namespace WKInterpreter.Readers
         }
         public Point ReadPoint(DimensionType dimension)
         {
+            if (!canRead())
+                return new Point();
+
             switch (dimension)
             {
                 case DimensionType.XY:
@@ -122,10 +125,19 @@ namespace WKInterpreter.Readers
         public LineString ReadLineString(DimensionType dimension)
         {
             //read the n points
+            LineString line = new LineString();
 
-            //for to create n points inside the line
+            if (!canRead())
+                return line;
 
-            throw new NotImplementedException();
+            int nPoints = ReadNextInt();
+
+            for (int i = 0; i < nPoints; i++)
+            {
+                line.AddPoint(ReadPoint(dimension));
+            }
+
+            return line;
         }
         public Polygon ReadPolygon(DimensionType dimension)
         {
@@ -182,6 +194,10 @@ namespace WKInterpreter.Readers
 
             //Reverse the array if is in little endian
             return m_endian == EndianType.LITTLE_ENDIAN ? result.Reverse().ToArray() : result;
+        }
+        private bool canRead()
+        {
+            return !(m_index >= m_blop.Length);
         }
     }
 }

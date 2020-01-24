@@ -112,6 +112,24 @@
             </summary>
             <typeparam name="T">Geometry type to define the collection.</typeparam>
         </member>
+        <member name="P:WKInterpreter.GeometryCollection`1.Dimension">
+            <summary>
+            Shared dimension for all the elements int the collection.
+            </summary>
+            <remarks>
+            If the element is not valid may be for a different dimension in an element.
+            </remarks>
+        </member>
+        <member name="P:WKInterpreter.GeometryCollection`1.IsEmpty">
+            <summary>
+            The collection is empty.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.GeometryCollection`1.IsValid">
+            <summary>
+            GeometryCollection base validation.
+            </summary>
+        </member>
         <member name="T:WKInterpreter.GeometryType">
             <summary>
             Well Known format, Geometry type.
@@ -145,6 +163,11 @@
         <member name="P:WKInterpreter.LineString.GeometryType">
             <summary>
             Geometry type of the object, LINESTRING.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.LineString.IsValid">
+            <summary>
+            LineString validation.
             </summary>
         </member>
         <member name="M:WKInterpreter.LineString.AddPoint(WKInterpreter.Point)">

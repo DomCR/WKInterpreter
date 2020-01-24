@@ -16,16 +16,9 @@ namespace WKInterpreter
         {
             get
             {
-                //Different dimension element validation
-                if (m_geometries.Select(o => o.Dimension).Distinct().Count() > 1)
+                //Base check
+                if (!base.IsValid)
                     return false;
-
-                //Check the validation of all the elements
-                foreach (Geometry item in m_geometries)
-                {
-                    if (!item.IsValid)
-                        return false;
-                }
 
                 //More than 3 points
                 if (m_geometries.Count < 3)

@@ -14,6 +14,12 @@ namespace WKInterpreter
     public class GeometryCollection<T> : Geometry where T : Geometry
     {
         public override GeometryType GeometryType { get { return GeometryType.GEOMETRYCOLLECTION; } }
+        /// <summary>
+        /// Shared dimension for all the elements int the collection.
+        /// </summary>
+        /// <remarks>
+        /// If the element is not valid may be for a different dimension in an element.
+        /// </remarks>
         public override DimensionType Dimension
         {
             get
@@ -25,7 +31,13 @@ namespace WKInterpreter
                     return DimensionType.XY;
             }
         }
+        /// <summary>
+        /// The collection is empty.
+        /// </summary>
         public override bool IsEmpty { get { return !m_geometries.Any(); } }
+        /// <summary>
+        /// GeometryCollection base validation.
+        /// </summary>
         public override bool IsValid
         {
             get

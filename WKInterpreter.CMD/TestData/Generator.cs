@@ -9,6 +9,7 @@ namespace WKInterpreter.CMD.TestData
     public class Generator
     {
         public static int Seed = 0;
+        public static int MaxPoints = 20;
         private static readonly Random m_random = new Random(Seed);
 
         public static TestModel CreateTestModel()
@@ -18,19 +19,28 @@ namespace WKInterpreter.CMD.TestData
             GeometryType[] geometryTypes = Enum.GetValues(typeof(GeometryType)).Cast<GeometryType>().ToArray();
             DimensionType[] dimensions = Enum.GetValues(typeof(DimensionType)).Cast<DimensionType>().ToArray();
 
-            //foreach (GeometryType geometry in geometryTypes)
+
+            geometryTypes = new GeometryType[] { GeometryType.POINT, GeometryType.LINESTRING };
+            foreach (GeometryType geometry in geometryTypes)
             {
-                GeometryType geometry = GeometryType.POINT;
                 foreach (DimensionType dimension in dimensions)
                 {
-                    Test empty = createEmpty(geometry, dimension);
+                    Test empty = new Test();
+                    empty.CreateEmpty(geometry, dimension);
                     model.AddTest(empty);
-                    Test basic = createTest(geometry, dimension);
+
+                    Test basic = createTest(geometry, dimension, false);
                     model.AddTest(basic);
 
+                    Test negative = createTest(geometry, dimension, true);
+                    model.AddTest(negative);
+
                     //Write the added tests
-                    if (basic != null)
+                    if (basic != null && negative != null)
+                    {
                         Console.WriteLine(basic.ToString());
+                        Console.WriteLine(negative.ToString());
+                    }
                 }
             }
 
@@ -49,18 +59,25 @@ namespace WKInterpreter.CMD.TestData
             test.wkt = geometry.ToString() + " " + dimension.WktEncode() + " EMPTY";
             test.ewkt = "SRID=4326;" + geometry.ToString() + " " + dimension.WktEncode() + " EMPTY";
 
+            test.wkb_big = arr.BigEndian.ToArray();
+            test.wkb_little = arr.LittleEndian.ToArray();
+
             test.Validation = Activator.CreateInstance(geometry.GetEquivalentType()) as Geometry;
             return test;
         }
-        static Test createTest(GeometryType geometry, DimensionType dimension)
+        static Test createTest(GeometryType geometry, DimensionType dimension, bool isNegative)
         {
+            Test test = new Test();
+
             switch (geometry)
             {
                 case GeometryType.GEOMETRY:
                     break;
                 case GeometryType.POINT:
-                    return createPointTest(dimension);
+                    test.CreatePointTest(dimension, isNegative);
+                    break;
                 case GeometryType.LINESTRING:
+                    test.CreateLineStringTest(dimension, isNegative);
                     break;
                 case GeometryType.POLYGON:
                     break;
@@ -114,9 +131,34 @@ namespace WKInterpreter.CMD.TestData
                     break;
             }
 
-            return null;
+            return test;
         }
         //**************************************************************************************
+        static void createCoordinate(DimensionType dimension, ref BinaryArray arr, ref string test, out Point pt)
+        {
+            double?[] values = new double?[] { null, null, null, null };
+
+            for (int i = 0; i < dimension.GetDimensionValue(); i++)
+            {
+                double value = m_random.NextDouble();
+                values[i] = value;
+                arr.AddBytes(doubleToBytes(value));
+                test += value;
+
+                if (i < dimension.GetDimensionValue() - 1)
+                    test += " ";
+            }
+
+            //Set the validation element
+            if (dimension == DimensionType.XYM)
+            {
+                pt = new Point(values[0], values[1], null, values[2]);
+            }
+            else
+            {
+                pt = new Point(values[0], values[1], values[2], values[3]);
+            }
+        }
         static Test createPointTest(DimensionType dimension)
         {
             double?[] values = new double?[] { null, null, null, null };
@@ -128,7 +170,8 @@ namespace WKInterpreter.CMD.TestData
             BinaryArray arr = new BinaryArray();
             //arr.BigEndian.Add(endianToByte(EndianType.BIG_ENDIAN));
             //arr.LittleEndian.Add(endianToByte(EndianType.LITTLE_ENDIAN));
-            arr.AddBytes(intToBytes((int)GeometryType.POINT + (int)dimension));          
+            arr.AddBytes(intToBytes((int)GeometryType.POINT + (int)dimension));
+
             //**********************************************************
             #region Set wkt case
             test.wkt = "POINT " + dimension.WktEncode() + "(";
@@ -160,12 +203,54 @@ namespace WKInterpreter.CMD.TestData
 
             return test;
         }
+        static Test createLineStringTest(DimensionType dimension)
+        {
+            Test test = new Test();
+            test.Type = GeometryType.LINESTRING;
+            test.Dimension = dimension;
+
+            //Array to store the byte form
+            BinaryArray arr = new BinaryArray();
+            arr.AddBytes(intToBytes((int)GeometryType.LINESTRING + (int)dimension));
+
+            int npoints = m_random.Next(2, MaxPoints);
+
+            //**********************************************************
+            #region Set wkt case
+            test.wkt = test.Type + " " + dimension.WktEncode() + "(";
+
+            for (int j = 0; j < npoints; j++)
+            {
+                for (int i = 0; i < dimension.GetDimensionValue(); i++)
+                {
+                    double value = m_random.NextDouble();
+                    //values[i] = value;
+                    arr.AddBytes(doubleToBytes(value));
+                    test.wkt += value;
+
+                    if (i < dimension.GetDimensionValue() - 1)
+                        test.wkt += " ";
+                }
+
+                if (j < npoints - 1)
+                    test.wkt += ",";
+            }
+
+            test.wkt += ")";
+            #endregion
+            //**********************************************************
+            test.wkb_big = arr.BigEndian.ToArray();
+            test.wkb_little = arr.LittleEndian.ToArray();
+            //**********************************************************
+
+            return test;
+        }
         //**************************************************************************************
         static byte endianToByte(EndianType value)
         {
             return Convert.ToByte(value);
         }
-        static byte[] doubleToBytes(double value) 
+        static byte[] doubleToBytes(double value)
         {
             if (BitConverter.IsLittleEndian)
                 return BitConverter.GetBytes(value).Reverse().ToArray();

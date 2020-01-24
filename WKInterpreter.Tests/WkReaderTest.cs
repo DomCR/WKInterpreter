@@ -18,7 +18,6 @@ namespace WKInterpreter.Tests
             TestData = new TheoryData<TestCase>();
             string path = "../../../test_model.json";
             JObject model = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(path));
-            //TestModel model = JsonConvert.DeserializeObject<TestModel>(File.ReadAllText(path));
 
             foreach (KeyValuePair<string, JToken> cases in model)
             {
@@ -33,20 +32,14 @@ namespace WKInterpreter.Tests
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void ParseWkt(TestCase testCase)
-        {
-            Geometry result = Geometry.Deserialize(testCase.wkt);
-
-            Assert.True(result.IsValid);
-        }
-        [Theory]
-        [MemberData(nameof(TestData))]
         public void ParseWkb_big(TestCase testCase)
         {
             Geometry result = Geometry.Deserialize(testCase.wkb_big);
 
             Assert.True(result.IsValid);
+            Assert.True(result.Equals(testCase.Validation));
         }
+
         [Theory]
         [MemberData(nameof(TestData))]
         public void ParseWkb_little(TestCase testCase)
@@ -54,6 +47,17 @@ namespace WKInterpreter.Tests
             Geometry result = Geometry.Deserialize(testCase.wkb_little);
 
             Assert.True(result.IsValid);
+            Assert.True(result.Equals(testCase.Validation));
+        }
+
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void ParseWkt(TestCase testCase)
+        {
+            Geometry result = Geometry.Deserialize(testCase.wkt);
+
+            Assert.True(result.IsValid);
+            Assert.True(result.Equals(testCase.Validation));
         }
     }
 }

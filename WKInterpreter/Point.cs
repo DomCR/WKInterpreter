@@ -7,7 +7,7 @@ namespace WKInterpreter
     /// <summary>
     /// Point class
     /// </summary>
-    public class Point : Geometry
+    public class Point : Geometry, IEquatable<Point>
     {
         /// <summary>
         /// X component.
@@ -125,12 +125,24 @@ namespace WKInterpreter
         public bool IsNear(Point other, double tolerance = 0.0d)
         {
             //Argument validation
+            double dist = DistanceFrom(other);
+            if (tolerance < 0)
+                throw new ArgumentOutOfRangeException("Tolerance cannot be less than 0.");
+
+            return dist <= tolerance;
+        }
+        /// <summary>
+        /// Returns the distance from another point.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public double DistanceFrom(Point other)
+        {
+            //Argument validation
             if (other.IsEmpty || this.IsEmpty)
                 throw new ArgumentException("Point cannot be empty.");
             if (this.Dimension != other.Dimension)
                 throw new ArgumentException("Points must have the same dimension.");
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("Tolerance cannot be less than 0.");
 
             double xdis = Math.Pow(X.GetValueOrDefault() - other.X.GetValueOrDefault(), 2);
             double ydis = Math.Pow(Y.GetValueOrDefault() - other.Y.GetValueOrDefault(), 2);
@@ -155,9 +167,38 @@ namespace WKInterpreter
                     break;
             }
 
-            double dist = Math.Sqrt(xdis + ydis + zdis + mdis);
+            return Math.Sqrt(xdis + ydis + zdis + mdis);
+        }
+        /// <summary>
+        /// Equality between this object and another
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            if (!(other is Point))
+                return false;
 
-            return dist <= tolerance;
+            return Equals((Point)other);
+        }
+        /// <summary>
+        /// Equality between this object and another
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(Point other)
+        {
+            return X == other.X && Y == other.Y && Z == other.Z && M == other.M;
+        }
+        /// <summary>
+        /// HashCode.
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return new { X, Y, Z, M }.GetHashCode();
         }
     }
 }

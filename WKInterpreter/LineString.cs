@@ -84,6 +84,23 @@ namespace WKInterpreter
         /// Geometry type of the object, LINESTRING.
         /// </summary>
         public override GeometryType GeometryType { get { return GeometryType.LINESTRING; } }
+        /// <summary>
+        /// LineString validation.
+        /// </summary>
+        public override bool IsValid
+        {
+            get
+            {
+                if (!base.IsValid)
+                    return false;
+
+                //Line must have min 2 points
+                if (m_geometries.Count == 1)
+                    return false;
+
+                return true;
+            }
+        }
         //*********************************************************************************
         /// <summary>
         /// 
@@ -91,7 +108,7 @@ namespace WKInterpreter
         /// <param name="point"></param>
         public void AddPoint(Point point)
         {
-            if (point.Dimension != Dimension)
+            if (!this.IsEmpty && point.Dimension != Dimension)
                 throw new InvalidDimensionException();
             if (point.IsEmpty)
                 throw new ArgumentException("Cannot add an empty point.");
