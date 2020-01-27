@@ -375,13 +375,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.Readers.WktReader.readGroup(System.Char,System.Char,System.Int32@)">
+        <member name="M:WKInterpreter.Readers.WktReader.readGroup(System.Char,System.Char,System.String,System.Int32@)">
             <summary>
             Read a string and return the first string enclosed between the selected characters.
             </summary>
             <param name="open"></param>
             <param name="close"></param>
-            <param name="lasIndex">Index of the closing character.</param>
+            <param name="line"></param>
+            <param name="lastIndex">Index of the closing character.</param>
             <returns>The string between the 2 tokens.</returns>
         </member>
         <member name="M:WKInterpreter.Readers.WktReader.readUntilToken(System.String[])">

@@ -108,6 +108,7 @@ namespace WKInterpreter.CMD.TestData
             int nlines = m_random.Next(1, 5);
             m_arr.AddBytes(intToBytes(nlines));
 
+            //Create lines
             for (int i = 0; i < nlines; i++)
             {
                 this.wkt += "(";
@@ -130,7 +131,7 @@ namespace WKInterpreter.CMD.TestData
 
                 (this.Validation as MultiLineString).AddGeometry(tmpls);
 
-                if (i < npoints - 1)
+                if (i < nlines - 1)
                 {
                     this.wkt += "),";
                     this.ewkt += "),";

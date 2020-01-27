@@ -38,7 +38,9 @@ namespace WKInterpreter.Readers
                 case GeometryType.POLYGON:
                     return ReadPolygon(dimension);
                 case GeometryType.MULTIPOINT:
+                    return ReadMultiPoint(dimension);
                 case GeometryType.MULTILINESTRING:
+                    return ReadMultiLineString(dimension);
                 case GeometryType.MULTIPOLYGON:
                 case GeometryType.GEOMETRYCOLLECTION:
                 case GeometryType.CIRCULARSTRING:
@@ -148,6 +150,10 @@ namespace WKInterpreter.Readers
             throw new NotImplementedException();
         }
         public MultiLineString ReadMultiLineString(DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
+        public MultiPolygon ReadMultiPolygon(DimensionType dimension)
         {
             throw new NotImplementedException();
         }

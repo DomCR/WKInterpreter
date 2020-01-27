@@ -56,8 +56,8 @@ namespace WKInterpreter.Tests
         {
             Geometry result = Geometry.Deserialize(testCase.wkt);
 
-            Assert.True(result.IsValid);
-            Assert.True(result.Equals(testCase.Validation));
+            Assert.True(result.IsValid, "IsValid failed, test id: " + testCase.Id);
+            Assert.True(result.Equals(testCase.Validation), "Validation failed, test id: " + testCase.Id);
         }
     }
 }

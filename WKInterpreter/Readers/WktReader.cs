@@ -100,7 +100,7 @@ namespace WKInterpreter.Readers
                 case GeometryType.MULTILINESTRING:
                     return new MultiLineString();
                 case GeometryType.MULTIPOLYGON:
-                    //return new Multip
+                //return new Multip
                 case GeometryType.GEOMETRYCOLLECTION:
                 case GeometryType.CIRCULARSTRING:
                 case GeometryType.COMPOUNDCURVE:
@@ -157,7 +157,7 @@ namespace WKInterpreter.Readers
 
             //Point to store values
             Point pt = new Point();
-            
+
             switch (dimension)
             {
                 case DimensionType.XY:
@@ -193,14 +193,14 @@ namespace WKInterpreter.Readers
         public Point ReadPoint(DimensionType dimension)
         {
             //Get the string data information of the coordinate
-            string coordinate = readGroup('(', ')', ref m_currIndex);
+            string coordinate = readGroup('(', ')', m_buffer, ref m_currIndex);
 
             //Read point
             return ReadCoordinate(dimension, coordinate);
         }
         public LineString ReadLineString(DimensionType dimension)
         {
-            string[] linePoints = readGroup('(', ')', ref m_currIndex).Split(',');
+            string[] linePoints = readGroup('(', ')', m_buffer, ref m_currIndex).Split(',');
             LineString line = new LineString();
 
             foreach (string pt in linePoints)
@@ -216,7 +216,7 @@ namespace WKInterpreter.Readers
         }
         public MultiPoint ReadMultiPoint(DimensionType dimension)
         {
-            string[] points = readGroup('(', ')', ref m_currIndex).Split(',');
+            string[] points = readGroup('(', ')', m_buffer, ref m_currIndex).Split(',');
             MultiPoint multiPoint = new MultiPoint();
 
             foreach (string pt in points)
@@ -228,7 +228,8 @@ namespace WKInterpreter.Readers
         }
         public MultiLineString ReadMultiLineString(DimensionType dimension)
         {
-            string[] lines = readGroup('(', ')', ref m_currIndex).Split(',');
+            string groups = readGroup('(', ')', m_buffer, ref m_currIndex);
+            string[] lines = readSubGroups('(', ')', groups);
             MultiLineString multiLine = new MultiLineString();
 
             foreach (string line in lines)
@@ -242,6 +243,10 @@ namespace WKInterpreter.Readers
                 multiLine.AddGeometry(tmpLine);
             }
             return multiLine;
+        }
+        public MultiPolygon ReadMultiPolygon(DimensionType dimension)
+        {
+            throw new NotImplementedException();
         }
         public bool IsEmpty()
         {
@@ -275,17 +280,18 @@ namespace WKInterpreter.Readers
         /// </summary>
         /// <param name="open"></param>
         /// <param name="close"></param>
-        /// <param name="lasIndex">Index of the closing character.</param>
+        /// <param name="line"></param>
+        /// <param name="lastIndex">Index of the closing character.</param>
         /// <returns>The string between the 2 tokens.</returns>
-        private string readGroup(char open, char close, ref int lasIndex)
+        private string readGroup(char open, char close, string line, ref int lastIndex)
         {
             var stack = new Stack<int>();
             bool isFirst = true;
             string group = "";
 
-            for (int i = m_currIndex; i < m_buffer.Length; i++)
+            for (int i = lastIndex; i < line.Length; i++)
             {
-                if (m_buffer[i] == open)
+                if (line[i] == open)
                 {
                     //Save the index of the open character
                     stack.Push(i);
@@ -297,7 +303,7 @@ namespace WKInterpreter.Readers
                         continue;
                     }
                 }
-                else if (m_buffer[i] == close)
+                else if (line[i] == close)
                 {
                     //Check if the sequence contains an open
                     if (!isFirst)
@@ -307,7 +313,7 @@ namespace WKInterpreter.Readers
                         //Closing character found
                         if (!stack.Any())
                         {
-                            lasIndex = i;
+                            lastIndex = i;
                             break;
                         }
                     }
@@ -316,11 +322,24 @@ namespace WKInterpreter.Readers
                 //If the first open character have been found, start reading the string
                 if (!isFirst)
                 {
-                    group += m_buffer[i];
+                    group += line[i];
                 }
             }
 
             return group;
+        }
+        private string[] readSubGroups(char open, char close, string groups)
+        {
+            List<string> subGroups = new List<string>();
+            string currGroup = "";
+
+            int index = 0;
+            while (!String.IsNullOrEmpty(currGroup = readGroup(open, close, groups, ref index)))
+            {
+                subGroups.Add(currGroup);
+            }
+
+            return subGroups.ToArray();
         }
         /// <summary>
         /// Read until finds the first token.
@@ -346,9 +365,14 @@ namespace WKInterpreter.Readers
                 {
                     pos = m_buffer.IndexOf(item);
                     token = item;
-                    m_currIndex = pos.GetValueOrDefault() + item.Length;
                 }
             }
+
+            //Token not found
+            if (String.IsNullOrEmpty(token))
+                return null;
+
+            m_currIndex = pos.GetValueOrDefault() + token.Length;
 
             return token;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using WKInterpreter.Readers;
 
@@ -29,6 +30,11 @@ namespace WKInterpreter
             Srid = null;
         }
         //******************************************************************************************
+        public static Geometry Deserialize<T>(Stream stream) where T : IReader
+        {
+
+            throw new NotImplementedException();
+        }
         /// <summary>
         /// Reads a Well-Known-Text geometry.
         /// </summary>

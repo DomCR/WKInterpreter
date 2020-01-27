@@ -5,6 +5,9 @@ using System.Text;
 
 namespace WKInterpreter.Readers
 {
+    /// <summary>
+    /// Interface for readers
+    /// </summary>
     public interface IReader : IDisposable
     {
         /// <summary>
@@ -23,5 +26,6 @@ namespace WKInterpreter.Readers
         Polygon ReadPolygon(DimensionType dimension);
         MultiPoint ReadMultiPoint(DimensionType dimension);
         MultiLineString ReadMultiLineString(DimensionType dimension);
+        MultiPolygon ReadMultiPolygon(DimensionType dimension);
     }
 }
