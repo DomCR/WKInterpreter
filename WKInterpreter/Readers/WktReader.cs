@@ -267,14 +267,6 @@ namespace WKInterpreter.Readers
             m_buffer = null;
         }
         //*********************************************************************************
-        private void skipWhitespaces()
-        {
-            while (m_currIndex < m_buffer.Length &&
-                m_buffer[m_currIndex] == ' ')
-            {
-                m_currIndex++;
-            }
-        }
         /// <summary>
         /// Read a string and return the first string enclosed between the selected characters.
         /// </summary>

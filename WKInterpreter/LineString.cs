@@ -11,6 +11,9 @@ namespace WKInterpreter
     /// </summary>
     public class LineString : GeometryCollection<Point>, IEquatable<LineString>
     {
+        /// <summary>
+        /// List of points inside the line.
+        /// </summary>
         public List<Point> Points { get { return m_geometries; } }
         /// <summary>
         /// Geometry type of the object, LINESTRING.
@@ -58,7 +61,11 @@ namespace WKInterpreter
 
             return m_geometries.FirstOrDefault().IsNear(m_geometries.Last());
         }
-
+        /// <summary>
+        /// Determines whether the specified object is equal to the current LineString.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public override bool Equals(object other)
         {
             if (other == null)
@@ -68,12 +75,19 @@ namespace WKInterpreter
 
             return Equals((LineString)other);
         }
-
+        /// <summary>
+        /// Determines whether the specified LineString is equal to the current LineString.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(LineString other)
         {
             return Points.SequenceEqual(other.Points);
         }
-
+        /// <summary>
+        /// Generate the hash code for this object.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             return new { Points }.GetHashCode();

@@ -13,6 +13,9 @@ namespace WKInterpreter
     /// <typeparam name="T">Geometry type to define the collection.</typeparam>
     public class GeometryCollection<T> : Geometry where T : Geometry
     {
+        /// <summary>
+        /// Geometry type of the object, GEOMETRYCOLLECTION. 
+        /// </summary>
         public override GeometryType GeometryType { get { return GeometryType.GEOMETRYCOLLECTION; } }
         /// <summary>
         /// Shared dimension for all the elements int the collection.
@@ -56,18 +59,30 @@ namespace WKInterpreter
                 return true;
             }
         }
-
+        /// <summary>
+        /// List of geometric objects inside the collection.
+        /// </summary>
         protected List<T> m_geometries { get; private set; }
-
+        /// <summary>
+        /// Default constructor for an empty collection.
+        /// </summary>
         public GeometryCollection()
         {
             m_geometries = new List<T>();
         }
+        /// <summary>
+        /// Initialize a collection.
+        /// </summary>
+        /// <param name="geometries">Enumerable with the geometries to initialize the object.</param>
         public GeometryCollection(IEnumerable<T> geometries)
         {
             m_geometries = new List<T>(geometries);
         }
         //*********************************************************************************
+        /// <summary>
+        /// Add a none empty geometry into the collection.
+        /// </summary>
+        /// <param name="element"></param>
         public virtual void AddGeometry(T element)
         {
             if (!this.IsEmpty && element.Dimension != Dimension)
