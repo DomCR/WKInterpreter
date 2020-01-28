@@ -325,6 +325,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:WKInterpreter.Readers.IReader">
+            <summary>
+            Interface for readers
+            </summary>
+        </member>
         <member name="M:WKInterpreter.Readers.IReader.Read">
             <summary>
             Start reading the Stream of the reader.

@@ -164,7 +164,7 @@ namespace WKInterpreter.Readers
         /// <returns></returns>
         public int ReadNextInt()
         {
-            return BitConverter.ToInt32(extractBytes(m_index, 4, ref m_index));
+            return BitConverter.ToInt32(extractBytes(m_index, 4, ref m_index), 0);
         }
         /// <summary>
         /// Read the next double in the byte array.
@@ -173,7 +173,7 @@ namespace WKInterpreter.Readers
         /// <returns></returns>
         public double ReadNextDouble()
         {
-            return BitConverter.ToDouble(extractBytes(m_index, 8, ref m_index));
+            return BitConverter.ToDouble(extractBytes(m_index, 8, ref m_index), 0);
         }
         public void Dispose()
         {
