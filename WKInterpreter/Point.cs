@@ -115,6 +115,10 @@ namespace WKInterpreter
         {
             M = m;
         }
+        public Point(double[] components, DimensionType dimension)
+        {
+            throw new NotImplementedException();
+        }
         //*********************************************************************************
         /// <summary>
         /// Check if the point is near or at the same coordinate as this one.

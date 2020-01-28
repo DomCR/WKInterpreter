@@ -9,7 +9,7 @@ namespace WKInterpreter
     {
         public List<Point> Points { get { return m_geometries; } }
         /// <summary>
-        /// Geometry type of the object, LINESTRING.
+        /// Geometry type of the object, MULTIPOINT.
         /// </summary>
         public override GeometryType GeometryType { get { return GeometryType.MULTIPOINT; } }
 

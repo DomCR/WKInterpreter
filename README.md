@@ -9,9 +9,9 @@ Based on the Wikipedia page : https://en.wikipedia.org/wiki/Well-known_text_repr
 | -------- | --- | --- | ------- | 
 |Point|True|True|True|
 |LineString|True|True|True|
-|Polygon|False|False|False|
-|MultiPoint|False|False|False|
-|MultiLineString|False|False|False|
+|Polygon|True|False|False|
+|MultiPoint|True|False|False|
+|MultiLineString|True|False|False|
 |MultiPolygon|False|False|False|
 |GeometryCollection|False|False|False|
 |CircularString|False|False|False|
