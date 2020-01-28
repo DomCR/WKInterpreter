@@ -112,6 +112,11 @@
             </summary>
             <typeparam name="T">Geometry type to define the collection.</typeparam>
         </member>
+        <member name="P:WKInterpreter.GeometryCollection`1.GeometryType">
+            <summary>
+            Geometry type of the object, GEOMETRYCOLLECTION. 
+            </summary>
+        </member>
         <member name="P:WKInterpreter.GeometryCollection`1.Dimension">
             <summary>
             Shared dimension for all the elements int the collection.
@@ -129,6 +134,28 @@
             <summary>
             GeometryCollection base validation.
             </summary>
+        </member>
+        <member name="P:WKInterpreter.GeometryCollection`1.m_geometries">
+            <summary>
+            List of geometric objects inside the collection.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.GeometryCollection`1.#ctor">
+            <summary>
+            Default constructor for an empty collection.
+            </summary>
+        </member>
+        <member name="M:WKInterpreter.GeometryCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initialize a collection.
+            </summary>
+            <param name="geometries">Enumerable with the geometries to initialize the object.</param>
+        </member>
+        <member name="M:WKInterpreter.GeometryCollection`1.AddGeometry(`0)">
+            <summary>
+            Add a none empty geometry into the collection.
+            </summary>
+            <param name="element"></param>
         </member>
         <member name="T:WKInterpreter.GeometryType">
             <summary>
@@ -190,6 +217,11 @@
             LineString class, implements a geometry collection of points.
             </summary>
         </member>
+        <member name="P:WKInterpreter.LineString.Points">
+            <summary>
+            List of points inside the line.
+            </summary>
+        </member>
         <member name="P:WKInterpreter.LineString.GeometryType">
             <summary>
             Geometry type of the object, LINESTRING.
@@ -203,6 +235,26 @@
         <member name="M:WKInterpreter.LineString.IsClosed">
             <summary>
             Check if the line is closed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.LineString.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current LineString.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.LineString.Equals(WKInterpreter.LineString)">
+            <summary>
+            Determines whether the specified LineString is equal to the current LineString.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.LineString.GetHashCode">
+            <summary>
+            Generate the hash code for this object.
             </summary>
             <returns></returns>
         </member>

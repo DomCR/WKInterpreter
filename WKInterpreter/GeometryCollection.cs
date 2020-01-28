@@ -11,7 +11,7 @@ namespace WKInterpreter
     /// Collection of geometries.
     /// </summary>
     /// <typeparam name="T">Geometry type to define the collection.</typeparam>
-    public class GeometryCollection<T> : Geometry where T : Geometry
+    public abstract class GeometryCollection<T> : Geometry where T : Geometry
     {
         /// <summary>
         /// Geometry type of the object, GEOMETRYCOLLECTION. 
@@ -92,5 +92,12 @@ namespace WKInterpreter
 
             m_geometries.Add(element);
         }
+    }
+    /// <summary>
+    /// Collection of generic geometries.
+    /// </summary>
+    public class GeometryCollection : GeometryCollection<Geometry>
+    {
+        public List<Geometry> Geometries { get { return m_geometries; } }
     }
 }
