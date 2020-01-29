@@ -69,7 +69,7 @@
         </member>
         <member name="M:WKInterpreter.Extensions.StringExtension.ToByteArray(System.String)">
             <summary>
-            Gets a string and returns an array of bytes
+            Gets a string and returns an array of bytes.
             </summary>
             <param name="value"></param>
             <returns></returns>
@@ -156,6 +156,11 @@
             Add a none empty geometry into the collection.
             </summary>
             <param name="element"></param>
+        </member>
+        <member name="T:WKInterpreter.GeometryCollection">
+            <summary>
+            Collection of generic geometries.
+            </summary>
         </member>
         <member name="T:WKInterpreter.GeometryType">
             <summary>
@@ -265,7 +270,7 @@
         </member>
         <member name="P:WKInterpreter.MultiPoint.GeometryType">
             <summary>
-            Geometry type of the object, LINESTRING.
+            Geometry type of the object, MULTIPOINT.
             </summary>
         </member>
         <member name="T:WKInterpreter.Point">
