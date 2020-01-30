@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WKInterpreter.Extensions
 {
-    public static class StringExtension
+    public static class StringExtensions
     {
         /// <summary>
         /// Gets a string and returns an array of bytes.

@@ -8,7 +8,7 @@ namespace WKInterpreter.Extensions
     /// <summary>
     /// Extension methods for the DimensionType enum.
     /// </summary>
-    public static class DimensionTypeExtension
+    public static class DimensionTypeExtensions
     {
         /// <summary>
         /// Return all the dimension types in it's wkt form. 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WKInterpreter.Extensions
 {
-    public static class GeometryTypeExtension
+    public static class GeometryTypeExtensions
     {
         public static Type GetEquivalentType(this GeometryType geometry)
         {

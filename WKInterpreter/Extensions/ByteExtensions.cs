@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WKInterpreter.Extensions
 {
-    internal static class ByteExtension
+    internal static class ByteExtensions
     {
         public static double ToDouble(this byte[] arr)
         {

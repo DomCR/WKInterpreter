@@ -10,7 +10,7 @@ namespace WKInterpreter.Readers
     internal class WktReader : IReader
     {
         private string[] m_geometryTypes = Enum.GetValues(typeof(GeometryType)).Cast<GeometryType>().Select(o => o.ToString()).ToArray();
-        private string[] m_dimensions = DimensionTypeExtension.GetEnumTypes();
+        private string[] m_dimensions = DimensionTypeExtensions.GetEnumTypes();
         private int m_currIndex;
         private string m_buffer;
         /// <summary>
@@ -132,7 +132,7 @@ namespace WKInterpreter.Readers
         public DimensionType ReadDimension()
         {
             string dim = readUntilToken(m_dimensions.Reverse().ToArray());
-            return DimensionTypeExtension.Parse(dim);
+            return DimensionTypeExtensions.Parse(dim);
         }
         public Point ReadCoordinate(DimensionType dimension, string coord)
         {

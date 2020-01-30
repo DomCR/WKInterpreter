@@ -22,7 +22,7 @@ namespace WKInterpreter.Readers
             m_index = 0;
 
             m_endian = BitConverter.ToBoolean(extractBytes(m_index, 1, ref m_index), 0) ? EndianType.LITTLE_ENDIAN : EndianType.BIG_ENDIAN;
-            DimensionType dimension = DimensionTypeExtension.Parse(ReadNextInt(), out GeometryType geometryType);
+            DimensionType dimension = DimensionTypeExtensions.Parse(ReadNextInt(), out GeometryType geometryType);
             return Read(geometryType, dimension);
         }
         public Geometry Read(GeometryType geometryType, DimensionType dimension)
