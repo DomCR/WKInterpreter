@@ -68,43 +68,6 @@ namespace WKInterpreter.Readers
 
             throw new NotImplementedException();
         }
-        public Geometry CreateGeometry(GeometryType geometryType)
-        {
-            switch (geometryType)
-            {
-                case GeometryType.GEOMETRY:
-                    throw new NotSupportedException(geometryType.ToString());
-                case GeometryType.POINT:
-                    return new Point();
-                case GeometryType.LINESTRING:
-                case GeometryType.POLYGON:
-                case GeometryType.MULTIPOINT:
-                case GeometryType.MULTILINESTRING:
-                case GeometryType.MULTIPOLYGON:
-                case GeometryType.GEOMETRYCOLLECTION:
-                case GeometryType.CIRCULARSTRING:
-                case GeometryType.COMPOUNDCURVE:
-                case GeometryType.CURVEPOLYGON:
-                case GeometryType.MULTICURVE:
-                case GeometryType.MULTISURFACE:
-                case GeometryType.CURVE:
-                case GeometryType.SURFACE:
-                case GeometryType.POLYHEDRALSURFACE:
-                case GeometryType.TIN:
-                case GeometryType.TRIANGLE:
-                case GeometryType.CIRCLE:
-                case GeometryType.GEODESICSTRING:
-                case GeometryType.ELLIPTICALCURVE:
-                case GeometryType.URBSCURVE:
-                case GeometryType.CLOTHOID:
-                case GeometryType.SPIRALCURVE:
-                case GeometryType.COMPOUNDSURFACE:
-                case GeometryType.BREPSOLID:
-                case GeometryType.AFFINEPLACEMENT:
-                default:
-                    throw new NotSupportedException(geometryType.ToString());
-            }
-        }
         public Point ReadPoint(DimensionType dimension)
         {
             if (!canRead())
@@ -151,7 +114,19 @@ namespace WKInterpreter.Readers
         }
         public MultiLineString ReadMultiLineString(DimensionType dimension)
         {
-            throw new NotImplementedException();
+            MultiLineString mline = new MultiLineString();
+
+            if (!canRead())
+                return mline;
+
+            int nLines = ReadNextInt();
+
+            for (int i = 0; i < nLines; i++)
+            {
+                mline.AddGeometry(ReadLineString(dimension));
+            }
+
+            return mline;
         }
         public MultiPolygon ReadMultiPolygon(DimensionType dimension)
         {

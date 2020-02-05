@@ -19,5 +19,25 @@ namespace WKInterpreter.Extensions
                 .Select(x => Convert.ToByte(value.Substring(x, 2), 16))
                 .ToArray();
         }
+        /// <summary>
+        /// Reads a string until it finds a character.
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="c">Character to find.</param>
+        /// <returns></returns>
+        public static string ReadUntil(this string line, char c)
+        {
+            string value = "";
+
+            for (int i = 0; i < line.Length; i++)
+            {
+                if (line[i] == c)
+                    break;
+                else
+                    value += line[i];
+            }
+
+            return value;
+        }
     }
 }

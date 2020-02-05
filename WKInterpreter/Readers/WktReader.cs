@@ -16,13 +16,37 @@ namespace WKInterpreter.Readers
         /// <summary>
         /// Reads a Well-Known-Text geometry.
         /// </summary>
-        /// <example>
-        /// Format: [geometry] [dimension] [empty?] ([geometric_information])
-        /// </example>
         /// <param name="line"></param>
         public WktReader(string line)
         {
             m_buffer = line.ToUpper();
+        }
+        /// <summary>
+        /// Read the string buffer as arguments
+        /// </summary>
+        /// <example>
+        /// Format: [geometry] [dimension] [empty?] ([geometric_information])
+        /// </example>
+        /// <returns></returns>
+        public Geometry ReadArgs()
+        {
+            m_currIndex = 0;
+
+            string[] args = m_buffer.ReadUntil('(').Split(' ').Where(o => !String.IsNullOrEmpty(o)).ToArray();
+            GeometryType geometryType = (GeometryType)Enum.Parse(typeof(GeometryType), args[0]);
+
+            switch (args.Length)
+            {
+                case 1:
+                default:
+                    break;
+            }
+
+            var a = args[0];//geometry
+            var b = args[1];//dimension
+            var c = args[2];//isempty
+
+            throw new NotImplementedException();
         }
         public Geometry Read()
         {
@@ -350,12 +374,14 @@ namespace WKInterpreter.Readers
                 if (String.IsNullOrEmpty(item))
                     continue;
 
-                int curr = m_buffer.IndexOf(item);
+                //string tmp = m_buffer.Substring(m_currIndex);
+                int curr = m_buffer.Substring(m_currIndex).IndexOf(item);
 
                 //Get the next token in the buffer
-                if ((pos == null || curr < pos) && curr >= m_currIndex)
+                if ((pos == null || curr < pos) && curr > -1 /*&& curr >= m_currIndex*/)
                 {
-                    pos = m_buffer.IndexOf(item);
+                    //pos = m_buffer.IndexOf(item);
+                    pos = curr;
                     token = item;
                 }
             }

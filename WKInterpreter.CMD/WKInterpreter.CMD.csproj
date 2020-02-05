@@ -13,4 +13,6 @@
     <ProjectReference Include="..\WKInterpreter\WKInterpreter.csproj" />
   </ItemGroup>
 
+  <Import Project="..\..\CSUtilities\CSUtilities\CSUtilities.projitems" Label="Shared" />
+
 </Project>

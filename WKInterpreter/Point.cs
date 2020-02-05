@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WKInterpreter.Extensions;
 
 namespace WKInterpreter
 {
     /// <summary>
-    /// Point class
+    /// Point class.
     /// </summary>
     public class Point : Geometry, IEquatable<Point>
     {
@@ -115,9 +116,36 @@ namespace WKInterpreter
         {
             M = m;
         }
-        public Point(double[] components, DimensionType dimension)
+        /// <summary>
+        /// Initalize a point using an array and a dimension.
+        /// </summary>
+        /// <param name="components"></param>
+        /// <param name="dimension"></param>
+        public Point(double[] components, DimensionType dimension = DimensionType.XY)
         {
-            throw new NotImplementedException();
+            if (components.Length < 2) throw new ArgumentException("Components must have at least 2 values.");
+            if (components.Length != dimension.GetDimensionValue()) throw new ArgumentException("Components must be the same size as the dimension value.");
+
+            X = components[0];
+            Y = components[1];
+
+            switch (dimension)
+            {
+                case DimensionType.XY:
+                    break;
+                case DimensionType.XYZ:
+                    Z = components[2];
+                    break;
+                case DimensionType.XYM:
+                    M = components[2];
+                    break;
+                case DimensionType.XYZM:
+                    Z = components[2];
+                    M = components[3];
+                    break;
+                default:
+                    break;
+            }
         }
         //*********************************************************************************
         /// <summary>

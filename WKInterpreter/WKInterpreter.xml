@@ -34,25 +34,25 @@
             Defines which endian type is encoded.
             </summary>
         </member>
-        <member name="T:WKInterpreter.Extensions.DimensionTypeExtension">
+        <member name="T:WKInterpreter.Extensions.DimensionTypeExtensions">
             <summary>
             Extension methods for the DimensionType enum.
             </summary>
         </member>
-        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.GetEnumTypes">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtensions.GetEnumTypes">
             <summary>
             Return all the dimension types in it's wkt form. 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.Parse(System.String)">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtensions.Parse(System.String)">
             <summary>
             Parse a dimension type from WKT.
             </summary>
             <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.Parse(System.Int32,WKInterpreter.GeometryType@)">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtensions.Parse(System.Int32,WKInterpreter.GeometryType@)">
             <summary>
             Parse a int into a dimension and a geometry type.
             </summary>
@@ -60,18 +60,26 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.Extensions.DimensionTypeExtension.WktEncode(WKInterpreter.DimensionType)">
+        <member name="M:WKInterpreter.Extensions.DimensionTypeExtensions.WktEncode(WKInterpreter.DimensionType)">
             <summary>
             Codification encode for WKT.
             </summary>
             <param name="dimension"></param>
             <returns></returns>
         </member>
-        <member name="M:WKInterpreter.Extensions.StringExtension.ToByteArray(System.String)">
+        <member name="M:WKInterpreter.Extensions.StringExtensions.ToByteArray(System.String)">
             <summary>
             Gets a string and returns an array of bytes.
             </summary>
             <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.Extensions.StringExtensions.ReadUntil(System.String,System.Char)">
+            <summary>
+            Reads a string until it finds a character.
+            </summary>
+            <param name="line"></param>
+            <param name="c">Character to find.</param>
             <returns></returns>
         </member>
         <member name="T:WKInterpreter.Geometry">
@@ -347,6 +355,13 @@
             <param name="z"></param>
             <param name="m"></param>
         </member>
+        <member name="M:WKInterpreter.Point.#ctor(System.Double[],WKInterpreter.DimensionType)">
+            <summary>
+            Initalize a point using an array and a dimension.
+            </summary>
+            <param name="components"></param>
+            <param name="dimension"></param>
+        </member>
         <member name="M:WKInterpreter.Point.IsNear(WKInterpreter.Point,System.Double)">
             <summary>
             Check if the point is near or at the same coordinate as this one.
@@ -426,10 +441,16 @@
             <summary>
             Reads a Well-Known-Text geometry.
             </summary>
+            <param name="line"></param>
+        </member>
+        <member name="M:WKInterpreter.Readers.WktReader.ReadArgs">
+            <summary>
+            Read the string buffer as arguments
+            </summary>
             <example>
             Format: [geometry] [dimension] [empty?] ([geometric_information])
             </example>
-            <param name="line"></param>
+            <returns></returns>
         </member>
         <member name="M:WKInterpreter.Readers.WktReader.ReadDimension">
             <summary>

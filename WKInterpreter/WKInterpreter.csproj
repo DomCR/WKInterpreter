@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="GeoJson\" />
+    <Folder Include="Writers\" />
   </ItemGroup>
 
 </Project>

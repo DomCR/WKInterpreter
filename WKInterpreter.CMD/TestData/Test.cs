@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSUtilities.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,9 @@ namespace WKInterpreter.CMD.TestData
         public DimensionType Dimension { get; set; }
         public string wkt { get; set; }
         public byte[] wkb_big { get; set; }
+        public string wkb_big_str { get { return wkb_big.ToStringHex(); } }
         public byte[] wkb_little { get; set; }
+        public string wkb_little_str { get { return wkb_little.ToStringHex(); } }
         public string ewkt { get; set; }
         public byte[] ewkb_big { get; set; }
         public byte[] ewkb_little { get; set; }

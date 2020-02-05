@@ -52,6 +52,7 @@ namespace WKInterpreter
             using (WktReader reader = new WktReader(str))
             {
                 value = reader.Read();
+                //value = reader.ReadArgs();
             }
 
             return value;
