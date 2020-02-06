@@ -15,9 +15,9 @@ namespace WKInterpreter.CMD.TestData
         public DimensionType Dimension { get; set; }
         public string wkt { get; set; }
         public byte[] wkb_big { get; set; }
-        public string wkb_big_str { get { return wkb_big.ToStringHex(); } }
+        public string wkb_big_str { get { return wkb_big.ToStringHex().ToUpper(); } }
         public byte[] wkb_little { get; set; }
-        public string wkb_little_str { get { return wkb_little.ToStringHex(); } }
+        public string wkb_little_str { get { return wkb_little.ToStringHex().ToUpper(); } }
         public string ewkt { get; set; }
         public byte[] ewkb_big { get; set; }
         public byte[] ewkb_little { get; set; }
@@ -99,14 +99,7 @@ namespace WKInterpreter.CMD.TestData
         }
         public void CreateMultiLineString(DimensionType dimension, bool negative)
         {
-            this.Type = GeometryType.MULTILINESTRING;
-            this.Dimension = dimension;
-            m_arr = new BinaryArray();
-            m_arr.AddBytes(intToBytes((int)this.Type + (int)dimension));
-
-            this.wkt = GeometryType.MULTILINESTRING.ToString() + " " + dimension.WktEncode() + "(";
-            this.ewkt = "SRID=4326;" + this.Type.ToString() + " " + dimension.WktEncode() + "(";
-            this.Validation = new MultiLineString();
+            setupBase<MultiLineString>(dimension, GeometryType.MULTILINESTRING);
 
             int nlines = m_random.Next(1, 5);
             m_arr.AddBytes(intToBytes(nlines));
@@ -146,6 +139,14 @@ namespace WKInterpreter.CMD.TestData
             this.wkb_big = m_arr.BigEndian.ToArray();
             this.wkb_little = m_arr.LittleEndian.ToArray();
         }
+        public void CreatePolygon(DimensionType dimension, bool negative)
+        {
+            setupBase<Polygon>(dimension, GeometryType.POLYGON);
+
+
+
+            throw new NotImplementedException();
+        }
         //**************************************************************************************
         void addCoordinate(DimensionType dimension, out Point pt, bool negative)
         {
@@ -179,6 +180,17 @@ namespace WKInterpreter.CMD.TestData
             {
                 pt = new Point(values[0], values[1], values[2], values[3]);
             }
+        }
+        void setupBase<T>(DimensionType dimension, GeometryType geometry) where T : Geometry, new()
+        {
+            this.Type = geometry;
+            this.Dimension = dimension;
+            m_arr = new BinaryArray();
+            m_arr.AddBytes(intToBytes((int)this.Type + (int)dimension));
+
+            this.wkt = geometry.ToString() + " " + dimension.WktEncode() + "(";
+            this.ewkt = "SRID=4326;" + this.Type.ToString() + " " + dimension.WktEncode() + "(";
+            this.Validation = new T();
         }
         public override string ToString()
         {

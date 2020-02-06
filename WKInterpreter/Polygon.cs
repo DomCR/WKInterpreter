@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WKInterpreter.Exceptions;
 
 namespace WKInterpreter
 {
-    public class Polygon : GeometryCollection<Point>
+    public class Polygon : Surface, IWKSerializable
     {
-        public List<Point> ExteriorShape { get { return m_geometries; } }
-        public List<Polygon> InteriorShapes { get; private set; }
-        public bool IsExterior { get; }
-        public Polygon Parent { get; }
+        public List<Surface> InnerShapes { get;  }
         public override GeometryType GeometryType { get { return GeometryType.POLYGON; } }
         public override bool IsValid
         {
@@ -20,16 +18,21 @@ namespace WKInterpreter
                 if (!base.IsValid)
                     return false;
 
-                //More than 3 points
-                if (m_geometries.Count < 3)
-                    return false;
-
-                //The polygon must be closed
-                if (!m_geometries.FirstOrDefault().IsNear(m_geometries.Last()))
-                    return false;
-
                 return true;
             }
+        }
+        public Polygon() : base()
+        {
+            InnerShapes = new List<Surface>();
+        }
+        public void AddInnerShape(Surface shape)
+        {
+            if (!this.IsEmpty && shape.Dimension != Dimension)
+                throw new InvalidDimensionException();
+            if (shape.IsEmpty)
+                throw new ArgumentException("Cannot add an empty element.");
+
+            InnerShapes.Add(shape);
         }
     }
 }
