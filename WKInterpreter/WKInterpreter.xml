@@ -271,10 +271,40 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:WKInterpreter.MultiLineString">
+            <summary>
+            MultiLineString class, implements a geometry collection of MultiLineStrings.
+            </summary>
+        </member>
+        <member name="P:WKInterpreter.MultiLineString.Lines">
+            <summary>
+            Lines in the multi line string.
+            </summary>
+        </member>
         <member name="P:WKInterpreter.MultiLineString.GeometryType">
             <summary>
             Geometry type of the object, MULTILINESTRING.
             </summary>
+        </member>
+        <member name="M:WKInterpreter.MultiLineString.Equals(System.Object)">
+            <summary>
+            Equality between this object and another
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.MultiLineString.Equals(WKInterpreter.MultiLineString)">
+            <summary>
+            Equality between this object and another
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WKInterpreter.MultiLineString.GetHashCode">
+            <summary>
+            HashCode.
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:WKInterpreter.MultiPoint.GeometryType">
             <summary>
@@ -283,7 +313,7 @@
         </member>
         <member name="T:WKInterpreter.Point">
             <summary>
-            Point class
+            Point class.
             </summary>
         </member>
         <member name="P:WKInterpreter.Point.X">
@@ -501,6 +531,44 @@
             </summary>
             <param name="match"></param>
             <param name="str">Substring between the match and the current index. Null if the match isn't found.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSUtilities.Extensions.ByteExtensions.ToStringHex(System.Byte[])">
+            <summary>
+            Convert a byte array into a hex string array.
+            </summary>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSUtilities.Extensions.StringExtensions.GetLines(System.String)">
+            <summary>
+            Return an array with all the lines.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSUtilities.Extensions.StringExtensions.ToByteArray(System.String)">
+            <summary>
+            Gets a string and returns an array of bytes.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSUtilities.Extensions.StringExtensions.ReadBetween(System.String,System.Char,System.Char)">
+            <summary>
+            Returns the first string between 2 characters.
+            </summary>
+            <param name="line"></param>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSUtilities.Extensions.StringExtensions.ReadUntil(System.String,System.Char)">
+            <summary>
+            Reads a string until it finds a character.
+            </summary>
+            <param name="line"></param>
+            <param name="c">Character to find.</param>
             <returns></returns>
         </member>
     </members>
