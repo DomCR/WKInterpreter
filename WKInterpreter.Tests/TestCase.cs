@@ -31,22 +31,10 @@ namespace WKInterpreter.Tests
         {
             foreach (PropertyInfo prop in GetType().GetProperties())
             {
-                if (prop.PropertyType == typeof(string))
-                {
-                    prop.SetValue(this, test[prop.Name].ToObject<string>());
-                }
-                if (prop.PropertyType == typeof(byte[]))
-                {
-                    prop.SetValue(this, test[prop.Name].ToObject<byte[]>());
-                }
-                else if (prop.PropertyType == typeof(GeometryType))
-                {
-                    prop.SetValue(this, test[prop.Name].ToObject<GeometryType>());
-                }
-                else if (prop.PropertyType == typeof(DimensionType))
-                {
-                    prop.SetValue(this, test[prop.Name].ToObject<DimensionType>());
-                }
+                if (prop.Name == "Validation")
+                    continue;
+
+                prop.SetValue(this, test[prop.Name].ToObject(prop.PropertyType));
             }
 
             //Set the validation object

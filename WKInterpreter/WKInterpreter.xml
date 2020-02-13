@@ -533,6 +533,79 @@
             <param name="str">Substring between the match and the current index. Null if the match isn't found.</param>
             <returns></returns>
         </member>
+        <member name="P:WKInterpreter.Surface.IsValid">
+            <summary>
+            Surface validation.
+            </summary>
+        </member>
+        <member name="T:CSUtilities.Mutation">
+            <summary>
+            Class that allows to modify, copy or control objects outside their own methods.
+            </summary>
+        </member>
+        <member name="M:CSUtilities.Mutation.CloneSerializable``1(``0)">
+            <summary>
+            Clone the serializable object into a new instance.
+            </summary>
+            <typeparam name="T">Type of the serializable object.</typeparam>
+            <param name="source">Object to clone.</param>
+            <returns>The new instance of the object.</returns>
+        </member>
+        <member name="M:CSUtilities.Mutation.DeepClone``1(System.Object)">
+            <summary>
+            Deep copy of an object using reflection.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <returns>A copy of the object</returns>
+        </member>
+        <member name="M:CSUtilities.Mutation.ExplodeObject``1(``0)">
+            <summary>
+            store the info of an object in a dictionary
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="instance"></param>
+            <returns>Returns a dictionary with [paramName, paramValue]</returns>
+        </member>
+        <member name="M:CSUtilities.Mutation.Serialize(System.String,System.Object)">
+            <summary>
+            Serialize an object into a file.
+            </summary>
+            <param name="path">File path.</param>
+            <param name="obj">Object to serialize.</param>
+        </member>
+        <member name="M:CSUtilities.Mutation.Deserialize``1(System.String)">
+            <summary>
+            Deserialize an object.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="path"></param>
+            <returns>The deserializated object.</returns>
+        </member>
+        <member name="M:CSUtilities.Mutation.Deserialize(System.String)">
+            <summary>
+            Deserialize an object.
+            </summary>
+            <param name="path"></param>
+            <returns>The deserializated object.</returns>
+        </member>
+        <member name="T:CSUtilities.TaskManager">
+            <summary>
+            Class to control tasks and processes.
+            </summary>
+        </member>
+        <member name="M:CSUtilities.TaskManager.ExecuteWithTimeLimit(System.Int32,System.Action)">
+            <summary>
+            Execute a method in a time span if the method don't finish at the time is canceled.
+            Example:
+                Action method = () => TaskExample(10);
+                bool test = TaskManager.ExecuteWithTimeLimit(3000, method);
+                if the action isn't finish in 3 seconds will stop the execution and return false.
+            </summary>
+            <param name="timeSpan">Time in milliseconds.</param>
+            <param name="codeBlock">Block of code, or method to execute in the timespan.</param>
+            <returns>bool indicating if the action has finished.</returns>
+        </member>
         <member name="M:CSUtilities.Extensions.ByteExtensions.ToStringHex(System.Byte[])">
             <summary>
             Convert a byte array into a hex string array.
