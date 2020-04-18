@@ -15,7 +15,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CSUtilities", "..\CSUtiliti
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\CSUtilities\CSUtilities\CSUtilities.projitems*{1316b8cd-4a50-4fe5-b957-e2cbe723cec7}*SharedItemsImports = 5
 		..\CSUtilities\CSUtilities\CSUtilities.projitems*{b4ef345d-52b9-47f1-aa2a-b4ae85f62efc}*SharedItemsImports = 13
+		..\CSUtilities\CSUtilities\CSUtilities.projitems*{d86a0dec-8f4c-42fe-a067-a7da4bebdb70}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
