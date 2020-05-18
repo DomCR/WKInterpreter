@@ -18,6 +18,10 @@ namespace WKInterpreter
         /// Geometry type of the object, MULTILINESTRING.
         /// </summary>
         public override GeometryType GeometryType { get { return GeometryType.MULTILINESTRING; } }
+        //*********************************************************************************
+        public MultiLineString() : base() { }
+        public MultiLineString(IEnumerable<LineString> geometries) : base(geometries) { }
+        //*********************************************************************************
         /// <summary>
         /// Equality between this object and another
         /// </summary>

@@ -63,6 +63,7 @@ namespace WKInterpreter
         /// List of geometric objects inside the collection.
         /// </summary>
         protected List<T> m_geometries { get; private set; }
+        //*********************************************************************************
         /// <summary>
         /// Default constructor for an empty collection.
         /// </summary>

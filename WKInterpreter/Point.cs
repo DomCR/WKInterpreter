@@ -164,6 +164,22 @@ namespace WKInterpreter
             return dist <= tolerance;
         }
         /// <summary>
+        /// Check if the point is near or at the same coordinate as this one.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <param name="tolerance"></param>
+        /// <param name="dimension"></param>
+        /// <returns></returns>
+        public bool IsNear(Point other, DimensionType dimension, double tolerance = 0.0d)
+        {
+            //Argument validation
+            double dist = DistanceFrom(other, dimension);
+            if (tolerance < 0)
+                throw new ArgumentOutOfRangeException("Tolerance cannot be less than 0.");
+
+            return dist <= tolerance;
+        }
+        /// <summary>
         /// Returns the distance from another point.
         /// </summary>
         /// <param name="other"></param>
@@ -182,6 +198,45 @@ namespace WKInterpreter
             double mdis = 0.0d;
 
             switch (this.Dimension)
+            {
+                case DimensionType.XY:
+                    break;
+                case DimensionType.XYZ:
+                    zdis = Math.Pow(Z.GetValueOrDefault() - other.Z.GetValueOrDefault(), 2);
+                    break;
+                case DimensionType.XYM:
+                    mdis = Math.Pow(M.GetValueOrDefault() - other.M.GetValueOrDefault(), 2);
+                    break;
+                case DimensionType.XYZM:
+                    zdis = Math.Pow(Z.GetValueOrDefault() - other.Z.GetValueOrDefault(), 2);
+                    mdis = Math.Pow(M.GetValueOrDefault() - other.M.GetValueOrDefault(), 2);
+                    break;
+                default:
+                    break;
+            }
+
+            return Math.Sqrt(xdis + ydis + zdis + mdis);
+        }
+        /// <summary>
+        /// Returns the distance from another point in a defined dimension.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <param name="dimension"></param>
+        /// <returns></returns>
+        public double DistanceFrom(Point other, DimensionType dimension)
+        {
+            //Argument validation
+            if (other.IsEmpty || this.IsEmpty)
+                throw new ArgumentException("Point cannot be empty.");
+            if (dimension.GetDimensionValue() > other.Dimension.GetDimensionValue())
+                throw new ArgumentException("Points must have an equivalent dimension.");
+
+            double xdis = Math.Pow(X.GetValueOrDefault() - other.X.GetValueOrDefault(), 2);
+            double ydis = Math.Pow(Y.GetValueOrDefault() - other.Y.GetValueOrDefault(), 2);
+            double zdis = 0.0d;
+            double mdis = 0.0d;
+
+            switch (dimension)
             {
                 case DimensionType.XY:
                     break;
