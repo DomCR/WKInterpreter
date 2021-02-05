@@ -76,7 +76,7 @@ namespace WKInterpreter
         }
         //*********************************************************************************
         /// <summary>
-        /// Default constructor, creates an empty point.
+        /// Default constructor, creates an empty <see cref="Point"/>.
         /// </summary>
         public Point() : base()
         {

@@ -14,7 +14,7 @@ namespace WKInterpreter
         /// <summary>
         /// Point.
         /// </summary>
-        POINT              = 0x01,       
+        POINT              = 0x01,
         /// <summary>
         /// Polyline.
         /// </summary>
